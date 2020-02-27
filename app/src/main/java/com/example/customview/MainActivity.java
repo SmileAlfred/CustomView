@@ -18,15 +18,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         Button youkuMenu = findViewById(R.id.youku_menu);
+        Button viewpagerItem = findViewById(R.id.viewpager_item);
+
         youkuMenu.setOnClickListener(this);
+        viewpagerItem.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.youku_menu:
-                Intent intent  = new Intent(this,YoukuMenu.class);
-                startActivity(intent);
+                Intent YoukuMenuIntent = new Intent(this, YoukuMenu.class);
+                startActivity(YoukuMenuIntent);
+                break;
+            case R.id.viewpager_item:
+                Intent AdvanceItemIntent = new Intent(this, AdvanceItem.class);
+                startActivity(AdvanceItemIntent);
                 break;
             default:
                 break;

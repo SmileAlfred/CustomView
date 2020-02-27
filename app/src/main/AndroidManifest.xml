@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".YoukuMenu" />
+        <activity android:name=".AdvanceItem" />
     </application>
 
 </manifest>
