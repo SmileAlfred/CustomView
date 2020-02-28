@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.example.customview.TitleLayout
         android:id="@+id/title_advance_item"
@@ -27,7 +26,8 @@
             android:id="@+id/text_advance_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
+            android:padding="3dp"
             android:text="我爱你中国"
             android:textColor="#fff"
             android:textSize="18sp" />
@@ -37,8 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal" />
 
-        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
