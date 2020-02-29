@@ -20,10 +20,12 @@ import java.util.List;
 
 /**
  * @author LiuSaiSai
- * @description:实现广告条效果；可以滑动；下边有点数，可以循环，每一页下面有文字备注 设置了无限循环，怎么突然小红点消失了?
- * 实现自动滑动？1. for + sleep ? 2. handler
- * 按住就不再自动滑动
- *  BUG： 小红点消失了？！ 实际上是 params 设置的太小了，看不到！气死了
+ * @description: 实现广告条效果；可以滑动；下边有点数，可以循环，每一页下面有文字备注；
+ * 1. 设置无限循环：⚪ .getCount() 返回超大数；⚪ mViewPager.setCurrentItem(50)解决不能左滑；其余状态小改
+ * 2. 怎么突然小红点消失了?并没有消失；只是 params 设置的尺寸太小了
+ * 3. 实现自动滑动？1. for + sleep ? 2. handler
+ * 4. 按住就不再自动滑动
+ * BUG： 小红点消失了？！ 实际上是 params 设置的太小了，看不到！
  * @date :2020/02/27 11:50
  */
 public class AdvanceItem extends AppCompatActivity {
@@ -32,39 +34,38 @@ public class AdvanceItem extends AppCompatActivity {
     private TextView mTextAdvanceItem;
     private LinearLayout mPointAdvanceItem;
 
-    /**
-     * ViewPager 的使用，类似于 ListView;
-     * 1. 布局中定义；
-     * 2. 代码中实例化；
-     * 3. 准备数据；
-     * 4. 设置(PagerAdapter)适配器 item 布局 → 绑定数据
-     */
     private List<ImageView> mImageViewList;
-
-    //图片资源
+    /**
+     * 图片资源
+     */
     private final int[] imageIds = {R.drawable.advance_3d,
             R.drawable.advance_forest,
             R.drawable.advance_road,
             R.drawable.advance_sumer,
             R.drawable.advance_woods_path,};
-    //  记录 上一个点的位置
-    private int prePosition = 0;
-    // 是否 已经 滑动
-    private boolean isDragging = false;    //广告标题集合
 
     private final String[] imageDescriptions = {
             "3D环绕", "广袤森林", "一路向前", "万园之园", "", "俯瞰马路"
     };
+
+    /**
+     * 记录 上一个点的位置
+     */
+    private int prePosition = 0;
+    /**
+     * 是否 已经 滑动
+     */
+    private boolean isDragging = false;    //广告标题集合
 
 
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            int item = mViewPager.getCurrentItem() + 1;
-            mViewPager.setCurrentItem(item);
-            //延迟发消息
-            mHandler.sendEmptyMessageDelayed(0, 3000);
+
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1); //自动化东到下一页
+
+            mHandler.sendEmptyMessageDelayed(0, 3000);  //发延迟消息
         }
     };
 
@@ -77,55 +78,65 @@ public class AdvanceItem extends AppCompatActivity {
         mTextAdvanceItem = findViewById(R.id.text_advance_item);
         mPointAdvanceItem = findViewById(R.id.point_advance_item);
 
-        // ViewPager 的使用，类似于 ListView;
-        // 1. 布局中定义；
-        // 2. 代码中实例化；
-        // 3. 准备数据；
+        /**
+         * ViewPager 的使用，类似于 ListView;
+         * 1. 布局中定义；
+         * 2. 代码中实例化；
+         * 3. 准备数据；
+         * 添加点，点是在 drawable 中新建 xml 文件，<shape ... oval ...
+         */
         mImageViewList = new ArrayList<>();
+
         for (int i = 0; i < imageIds.length; i++) {
 
             ImageView imageView = new ImageView(this);
-            //这里使用的是 setBackgroundResource；不是 src 避免图片不能充满；也不是setBackground
-            imageView.setBackgroundResource(imageIds[i]);
 
-            //添加到自己的 数据集合中
-            mImageViewList.add(imageView);
+            imageView.setBackgroundResource(imageIds[i]);   //这里使用的是 setBackgroundResource；不是 src 避免图片不能充满；也不是setBackground
 
-            // 添加点
-            ImageView point = new ImageView(this);
-            point.setBackgroundResource(R.drawable.point_selector);//丢了关键一步！
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(28, 28);
+            mImageViewList.add(imageView);                  //添加到自己的 数据集合中
 
-            //  params 用于设置 点的 间隔
+            ImageView point = new ImageView(this);  // 添加点
+
+            point.setBackgroundResource(R.drawable.point_selector);//丢了关键一步！这里设置的是 selector；而selector设置了true或false
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(28, 28);   //  params 用于设置 点的 间隔
+
             if (i == 0) {
                 point.setEnabled(true);     //显示红色
             } else {
                 point.setEnabled(false);    //显示灰色
-                params.leftMargin = 18;      //不是 第0 个点，就距离左边 8 个像素。
+                params.leftMargin = 18;     //不是 第0 个点，就距离左边 8 个像素。
             }
             point.setLayoutParams(params);
+
             mPointAdvanceItem.addView(point);
         }
-        //4. 设置适配器
-        mViewPager.setAdapter(new MyPagerAdapter());
-        //设置监听 点的位置的改变
-        mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
-        // 存在的 BUG ；可以无限向右滑动，但初始时，不能左滑；解决：将初始位置设置在中间
-        //如果你想初始位置在首页，那么就让其能整除 页面总数；
-        mViewPager.setCurrentItem(50);
+        /**
+         * 4. 设置(PagerAdapter)适配器 item 布局 → 绑定数据
+         *          BUG ；可以无限向右滑动，但初始时，不能左滑；
+         *          解决：.setCurrentItem() 将初始位置设置在中间
+         */
+        mViewPager.setAdapter(new MyPagerAdapter());
+
+        mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());   //设置监听 点的位置的改变
+
+        mViewPager.setCurrentItem(50);  //如果你想初始位置在首页，那么就让其能整除 页面总数；
 
         mTextAdvanceItem.setText(imageDescriptions[prePosition]);
 
-        //发消息
-        mHandler.sendEmptyMessageDelayed(0, 3000);
+        mHandler.sendEmptyMessageDelayed(0, 3000);  //发消息
     }
 
+    /**
+     * 自定义监听器 继承自 ViewPager.OnPageChangeListener
+     * 当页面滑动式，响应本监听器
+     */
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
         /**
          * 当页面滑动后，回调本方法
          *
-         * @param position             当前页面的位置
+         * @param position             当前页面的位置；从 0 开始
          * @param positionOffset       滑动了 页面的 百分之几？
          * @param positionOffsetPixels 在屏幕上 滑动了多少个像素？
          */
@@ -135,19 +146,20 @@ public class AdvanceItem extends AppCompatActivity {
         }
 
         /**
-         * 当某个页面被选中了的时候 回调
+         * 当某个页面被选择了的时候 回调
          *
          * @param position 被选中的 页面的 位置
          */
         @Override
         public void onPageSelected(int position) {
-            int realPosition = position % mImageViewList.size();    //实现无限循环时，需要对其取模；
-            //设置 对应的 文本信息
-            mTextAdvanceItem.setText(imageDescriptions[realPosition]);
-            //把上一个高亮的设置成 灰色
-            mPointAdvanceItem.getChildAt(prePosition).setEnabled(false);
-            //把当前页面设置成 高亮
-            mPointAdvanceItem.getChildAt(realPosition).setEnabled(true);
+
+            int realPosition = position % mImageViewList.size();            //实现无限循环时，需要对其取模；
+
+            mTextAdvanceItem.setText(imageDescriptions[realPosition]);      //设置 对应的 文本信息
+
+            mPointAdvanceItem.getChildAt(prePosition).setEnabled(false);    //mPointAdvanceItem 是点所在的 LinearLayout
+
+            mPointAdvanceItem.getChildAt(realPosition).setEnabled(true);    //把当前页面设置成 高亮
 
             prePosition = realPosition;
         }
@@ -174,6 +186,9 @@ public class AdvanceItem extends AppCompatActivity {
 
     }
 
+    /**
+     * 为 ViewPager 设置适配器；此处重写了四个方法
+     */
     class MyPagerAdapter extends PagerAdapter {
 
         @Override
@@ -183,7 +198,7 @@ public class AdvanceItem extends AppCompatActivity {
         }
 
         /**
-         * 相当于 ListView 中的 .getView()
+         * 相当于 ListView 中的 .getView()；
          *
          * @param container ViewPager 自身
          * @param position  当前实例化页面的位置
@@ -195,6 +210,7 @@ public class AdvanceItem extends AppCompatActivity {
 
             final ImageView imageView = mImageViewList.get(realPosition);
             container.addView(imageView);
+
             imageView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
