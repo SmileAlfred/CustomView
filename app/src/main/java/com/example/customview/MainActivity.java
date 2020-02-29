@@ -19,9 +19,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button youkuMenu = findViewById(R.id.youku_menu);
         Button viewpagerItem = findViewById(R.id.viewpager_item);
+        Button popupWindowsItem = findViewById(R.id.popup_windows_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
+        popupWindowsItem.setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.viewpager_item:
                 Intent AdvanceItemIntent = new Intent(this, AdvanceItem.class);
                 startActivity(AdvanceItemIntent);
+                break;
+            case R.id.popup_windows_item:
+                Intent PopupWindowsIntent = new Intent(this, PopupWindowsItem.class);
+                startActivity(PopupWindowsIntent);
                 break;
             default:
                 break;

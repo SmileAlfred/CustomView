@@ -99,13 +99,14 @@ public class AdvanceItem extends AppCompatActivity {
 
             point.setBackgroundResource(R.drawable.point_selector);//丢了关键一步！这里设置的是 selector；而selector设置了true或false
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(28, 28);   //  params 用于设置 点的 间隔
+            int radium = DensityUtil.dip2px(AdvanceItem.this, 8);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(radium, radium);   //  params 用于设置 点的 间隔
 
             if (i == 0) {
                 point.setEnabled(true);     //显示红色
             } else {
                 point.setEnabled(false);    //显示灰色
-                params.leftMargin = 18;     //不是 第0 个点，就距离左边 8 个像素。
+                params.leftMargin = DensityUtil.dip2px(AdvanceItem.this, 8);     //不是 第0 个点，就距离左边 8 个像素。
             }
             point.setLayoutParams(params);
 
