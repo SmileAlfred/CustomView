@@ -30,11 +30,12 @@ public class Tools {
     }
 
     public static void hideView(ViewGroup view, long startOffSet) {
-  /*.setDuration(500);    //设置动画的毫秒数    视图动画
+
+        /*
         //旋转工具类;此时传入四个参数：起始角度，结束角度，旋转中心的 X Y坐标
         //这个 X Y坐标有瑕疵；参考系是怎样定的？控件本身的宽没有充满屏幕——效果没有错，自己的理解有瑕疵
         RotateAnimation hideRotate = new RotateAnimation(0, 180, view.getWidth() / 2, view.getHeight());
-        hideRotate
+        hideRotate.setDuration(500);    //设置动画的毫秒数    视图动画
         hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
         hideRotate.setStartOffset(startOffSet); //设置动画延迟多久后执行
         view.startAnimation(hideRotate);
@@ -46,22 +47,23 @@ public class Tools {
             childrenView.setEnabled(false);
         }
         //一、设置隐藏后不可以点击；这样不好使；没有操作其子控件
-//        view.setEnabled(false);*/
+        //view.setEnabled(false);
+        */
 
         //属性动画解决 BUG  ObjectAnimator
-//        view.setRotation();
+        //view.setRotation();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", 0, 180);
-        animator.setDuration(500);    //设置动画的毫秒数
-        animator.setStartDelay(startOffSet);  //设置动画播放完成后停留在最后的 状态
+        animator.setDuration(500);               //设置动画的毫秒数
+        animator.setStartDelay(startOffSet);     //设置动画播放完成后停留在最后的 状态
         animator.start();
 
-        view.setPivotX(view.getWidth() / 2);    //设置旋转中心；错误方法 .setRotationX()
+        view.setPivotX(view.getWidth() / 2);     //设置旋转中心；错误方法 .setRotationX()
         view.setPivotY(view.getHeight());
     }
 
     public static void showView(ViewGroup view, long startOffSet) {
-        /*.setDuration(500);    //设置动画的毫秒数    视图动画
-          RotateAnimation hideRotate = new RotateAnimation(180, 360, view.getWidth() / 2, view.getHeight());
+        /*
+        RotateAnimation hideRotate = new RotateAnimation(180, 360, view.getWidth() / 2, view.getHeight());
         hideRotate.setDuration(500);    //设置动画的毫秒数
         hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
         hideRotate.setStartOffset(startOffSet); //设置动画延迟多久后执行
@@ -72,16 +74,17 @@ public class Tools {
             childrenView.setEnabled(true);
         }
         //一、设置 显示 后还可以点击
-//        view.setEnabled(true);*/
+        //view.setEnabled(true);
+        */
 
         //属性动画解决 BUG  ObjectAnimator
-//        view.setRotation();
+        //view.setRotation();
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", 180, 360);
-        animator.setDuration(500);    //设置动画的毫秒数
-        animator.setStartDelay(startOffSet);  //设置动画播放完成后停留在最后的 状态
+        animator.setDuration(500);                   //设置动画的毫秒数
+        animator.setStartDelay(startOffSet);         //设置动画播放完成后停留在最后的 状态
         animator.start();
 
-        view.setPivotX(view.getWidth() / 2);    //设置旋转中心；错误方法 .setRotationX()
+        view.setPivotX(view.getWidth() / 2);         //设置旋转中心；错误方法 .setRotationX()
         view.setPivotY(view.getHeight());
     }
 }
