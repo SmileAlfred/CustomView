@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".YoukuMenu" />
         <activity android:name=".AdvanceItem" />
-        <activity android:name=".PopupWindowsItem"/>
+        <activity android:name=".PopupWindowsItem" />
+        <activity android:name=".MyToggleButtonItem" />
     </application>
 
 </manifest>
