@@ -6,27 +6,33 @@
     <Button
         android:id="@+id/title_back_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="center_vertical"
+        android:background="#777777"
         android:text="Back"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/title_text_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:background="#777777"
         android:gravity="center"
-        android:textSize="30sp" />
+        android:textColor="#fff"
+        android:textSize="28sp" />
 
     <Button
         android:id="@+id/title_edit_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="center_vertical"
+        android:background="#777777"
         android:text="Edit"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="#fff" />
 
 
 </LinearLayout>

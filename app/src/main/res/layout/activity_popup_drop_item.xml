@@ -22,8 +22,8 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:padding="3dp"
-        android:textSize="20sp"
-        android:text="2020/02/29 16:11" />
+        android:text="2020/02/29 16:11"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/delete_image_view_pop"
