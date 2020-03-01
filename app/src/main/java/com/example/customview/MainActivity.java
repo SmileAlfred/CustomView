@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ToggleButton;
 
 /**
  * 这是 自定义控件 学习笔记
@@ -22,11 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button viewpagerItem = findViewById(R.id.viewpager_item);
         Button popupWindowsItem = findViewById(R.id.popup_windows_item);
         Button toggleButtonItem = findViewById(R.id.toggle_button_item);
+        Button autoAttributeItem = findViewById(R.id.auto_attribute_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
         popupWindowsItem.setOnClickListener(this);
         toggleButtonItem.setOnClickListener(this);
+        autoAttributeItem.setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.toggle_button_item:
                 Intent MyToggleButtonIntent = new Intent(this, MyToggleButtonItem.class);
                 startActivity(MyToggleButtonIntent);
+                break;
+            case R.id.auto_attribute_item:
+                Intent PropertyItemIntent = new Intent(this, AutoAttributeItem.class);
+                startActivity(PropertyItemIntent);
                 break;
             default:
                 break;

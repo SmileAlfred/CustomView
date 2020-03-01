@@ -112,7 +112,7 @@ public class MyToggleButton extends View implements View.OnClickListener {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
+        super.onTouchEvent(event);                // 这里的 .super() 不能省略
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 isMove = startX = event.getX();   //记录一开始时 的X坐标；.getX()获取子布局内X坐标  .getRawX()获取 父布局中X坐标
@@ -151,5 +151,4 @@ public class MyToggleButton extends View implements View.OnClickListener {
         }
         return true;
     }
-
 }

@@ -47,6 +47,14 @@
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
               android:text="自定义 开关按钮" />
+
+          <Button
+              android:id="@+id/auto_attribute_item"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="left|center_vertical"
+              android:paddingLeft="50dp"
+              android:text="自定义 属性" />
       </LinearLayout>
 
     </ScrollView>
