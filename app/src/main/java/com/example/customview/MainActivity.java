@@ -22,12 +22,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button popupWindowsItem = findViewById(R.id.popup_windows_item);
         Button toggleButtonItem = findViewById(R.id.toggle_button_item);
         Button autoAttributeItem = findViewById(R.id.auto_attribute_item);
+        Button myViewPagerItem = findViewById(R.id.my_view_pager_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
         popupWindowsItem.setOnClickListener(this);
         toggleButtonItem.setOnClickListener(this);
         autoAttributeItem.setOnClickListener(this);
+        myViewPagerItem.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.auto_attribute_item:
                 Intent PropertyItemIntent = new Intent(this, AutoAttributeItem.class);
                 startActivity(PropertyItemIntent);
+                break;
+            case R.id.my_view_pager_item:
+                Intent MyViewPagertemIntent = new Intent(this, MyViewPagerItem.class);
+                startActivity(MyViewPagertemIntent);
                 break;
             default:
                 break;

@@ -1,5 +1,6 @@
 package com.example.customview;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 
 import android.app.Activity;
@@ -35,6 +36,8 @@ public class TitleLayout extends LinearLayout implements View.OnClickListener {
         Button titleEditButton = findViewById(R.id.title_edit_button);
         mTitleText = findViewById(R.id.title_text_view);
 
+        titleBackButton.setBackgroundResource(R.drawable.icon_back);
+        titleEditButton.setBackgroundResource(R.drawable.icon_edit);
         mTitleText.setText(getContext().getClass().getSimpleName());
         titleBackButton.setOnClickListener(this);
         titleEditButton.setOnClickListener(this);
