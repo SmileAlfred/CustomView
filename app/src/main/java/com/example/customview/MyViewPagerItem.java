@@ -1,10 +1,15 @@
 package com.example.customview;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import javax.security.auth.PrivateCredentialPermission;
 
 /**
  * @author LiuSaiSai
@@ -21,6 +26,7 @@ public class MyViewPagerItem extends AppCompatActivity {
             R.drawable.a5,
             R.drawable.a6
     };
+    private RadioGroup mRadioGroup;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,15 +34,60 @@ public class MyViewPagerItem extends AppCompatActivity {
         setContentView(R.layout.activity_my_view_pager);
 
         mMyViewPager = findViewById(R.id.my_view_pager);
+        mRadioGroup = findViewById(R.id.radio_group_my_view_pager);
 
-        //添加页面
+        //添加页面  和 点
         for (int count = 0; count < imageIds.length; count++) {
+
+            //添加页面
             ImageView imageView = new ImageView(this);
             imageView.setBackgroundResource(imageIds[count]);
 
-            //把 imageView 装到 mMyViewPager 中
+            //添加页面 >>>   把 imageView 装到 mMyViewPager 中
             mMyViewPager.addView(imageView);
+
+
+            //添加点
+            RadioButton radioButton = new RadioButton(this);
+            radioButton.setId(count);
+
+            if (count == 0) {
+                radioButton.setChecked(true);
+            }
+            // 添加点 >>>  添加到 RadioGroup
+            mRadioGroup.addView(radioButton);
         }
+
+        /**
+         * 添加 测试 页面 ;出现BUG，为什么？
+         * 因为 View 类中 没有 测量 .onMeasure()
+         */
+        View testView = View.inflate(this, R.layout.activity_test_my_view_pager, null);
+        mMyViewPager.addView(testView, 2);
+
+        /**
+         *  设置 RadioGroup 选中 状态的变化
+         */
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            /**
+             * 回传 点中的 ID 数
+             * @param group
+             * @param checkedId 点中的 id；
+             */
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                mMyViewPager.scrollToPager(checkedId);  // 根据 下标位置 定位到 具体的 某个页面
+            }
+        });
+
+        /**
+         * 设置 页面 监听 的改变，→  页面 滑动点跟着 动
+         */
+        mMyViewPager.setOnPagerChangedListener(new MyViewPager.OnPagerChangedListener() {
+            @Override
+            public void scrollToPager(int position) {
+                mRadioGroup.check(position);
+            }
+        });
     }
 }
-

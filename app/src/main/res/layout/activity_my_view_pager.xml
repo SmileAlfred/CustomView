@@ -3,13 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.customview.TitleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <com.example.customview.MyViewPager
         android:id="@+id/my_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <com.example.customview.TitleLayout
+        android:id="@+id/title_my_view_pager_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_my_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" />
+
 
 </RelativeLayout>

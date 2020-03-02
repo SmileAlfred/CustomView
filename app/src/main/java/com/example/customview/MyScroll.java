@@ -42,7 +42,7 @@ public class MyScroll {
      */
     private float currentX;
 
-    public void startScroll(float startX, float startY, float distanceX, int distanceY) {
+    public void startScroll(float startX, float startY, float distanceX, int distanceY, float abs) {
         this.startX = startX;
         this.startY = startY;
         this.distanceX = distanceX;

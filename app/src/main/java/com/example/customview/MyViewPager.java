@@ -12,6 +12,7 @@ import android.widget.Toast;
 /**
  * @author LiuSaiSai
  * @description: 仿 ViewPager 的视图
+ * 难点：※ ※ ※ ※ 怎样定义一个 监听的 接口？    参照点击事件
  * @date :2020/03/02 9:39
  */
 public class MyViewPager extends ViewGroup {
@@ -98,12 +99,6 @@ public class MyViewPager extends ViewGroup {
                 //1. 记录坐标
                 startX = event.getX();
                 break;
-            case MotionEvent.ACTION_MOVE:
-
-                break;
-            case MotionEvent.ACTION_CANCEL:
-
-                break;
             case MotionEvent.ACTION_UP:
                 //2. 记录新坐标
                 float endX = event.getX();
@@ -132,7 +127,7 @@ public class MyViewPager extends ViewGroup {
      *
      * @param tempIndex
      */
-    private void scrollToPager(int tempIndex) {
+    public void scrollToPager(int tempIndex) {
 
         if (tempIndex < 0) {
             tempIndex = 0;
@@ -143,10 +138,15 @@ public class MyViewPager extends ViewGroup {
         //当前页面的 下表 位置
         mCurrentIndex = tempIndex;
 
+        if (mOnPagerChangedListener != null) {
+            mOnPagerChangedListener.scrollToPager(mCurrentIndex);
+        }
+
         float distanceX = mCurrentIndex * getWidth() - getScrollX();
 
-        //scrollTo(mCurrentIndex * getWidth(), getScrollY());        //瞬间移动到 指定位置；生硬
-        scroller.startScroll(getScrollX(), getScrollY(), distanceX, 0);
+        //scrollTo(mCurrentIndex * getWidth(), getScrollY());             //瞬间移动到 指定位置；生硬
+        //scroller.startScroll(getScrollX(), getScrollY(), distanceX, 0); //缓慢移动，但是 没有 时长 限制
+        scroller.startScroll(getScrollX(), getScrollY(), distanceX, 0, Math.abs(distanceX));
 
         invalidate();   //调用  .onDraw() 和 .computeScroll() 方法执行
     }
@@ -154,11 +154,54 @@ public class MyViewPager extends ViewGroup {
     @Override
     public void computeScroll() {
         super.computeScroll();
-        if(scroller.computeScrollOffset()){
+        if (scroller.computeScrollOffset()) {
             float currX = scroller.getCurrentX();
 
-            scrollTo((int) currX,0);
+            scrollTo((int) currX, 0);
             invalidate();
+        }
+    }
+
+    public interface OnPagerChangedListener {
+
+        /**
+         * 当页面改变的时候  回调本方法， 并将当前 页面的下标  回传
+         *
+         * @param position
+         */
+        void scrollToPager(int position);
+    }
+
+    private OnPagerChangedListener mOnPagerChangedListener;
+
+    /**
+     * 设置页面 改变 的监听
+     *
+     * @param onPagerChangedListener
+     */
+    public void setOnPagerChangedListener(OnPagerChangedListener onPagerChangedListener) {
+        mOnPagerChangedListener = onPagerChangedListener;
+    }
+
+    /**
+     * 测量的时候 测量多次，
+     * .onMesaure()总结
+     *  系统的onMesaure中所干的事：
+     *  1、根据 widthMeasureSpec 求得宽度width，和父view给的模式
+     *  2、根据自身的宽度width 和自身的padding 值，相减，求得子view可以拥有的宽度newWidth
+     *  3、根据 newWidth 和模式求得一个新的MeasureSpec值:
+     *   MeasureSpec.makeMeasureSpec(newSize, newmode);
+     *  4、用新的MeasureSpec来计算子view
+     *
+     * @param widthMeasureSpec  父层视图 给当前视图的 宽
+     * @param heightMeasureSpec
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        for (int count = 0; count < getChildCount(); count++) {
+            View childView = getChildAt(count);
+            childView.measure(widthMeasureSpec, heightMeasureSpec);
         }
     }
 }
