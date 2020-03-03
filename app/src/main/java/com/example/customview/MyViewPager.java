@@ -13,6 +13,7 @@ import android.widget.Toast;
  * @author LiuSaiSai
  * @description: 仿 ViewPager 的视图
  * 难点：※ ※ ※ ※ 怎样定义一个 监听的 接口？    参照点击事件
+ * 重点：※ ※ ※ ※ 学会 事件传递 事件拦截
  * @date :2020/03/02 9:39
  */
 public class MyViewPager extends ViewGroup {
@@ -87,7 +88,57 @@ public class MyViewPager extends ViewGroup {
     }
 
     private float startX;
+    private float downX;
+    private float downY;
 
+    /**
+     * 触摸事件存在 BUG ，scrollView 只可以上下滑 而没有实现 左右滑，
+     * 在这里 进行  <拦截>  解决。如果当前方法 返回 true；拦截事件将会触发当前控件的 onTouchEvent() 方法
+     * 如果当前方法 返回 false；事件继续传递给 孩子。
+     * × 这里返回 true 以后，scrollView 可以左右滑动 ，但又不可以上下滑动了。
+     * 解决：监听 滑动距离，上下多就返回 false，继续响应滑动；左右滑动多，就返回 true。
+     *
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        mGestureDetector.onTouchEvent(ev);  //解决 上下滑动后再左右滑时，出现的BUG<时间冲突问题>；
+        boolean result = false; //默认把结果传递给 孩子
+
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //1. 记录坐标
+                downX = ev.getX();
+                downY = ev.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //2. 记录 结束值
+                float endX = ev.getX();
+                float endY = ev.getY();
+
+                //3. 计算绝对值
+                float distanceX = Math.abs(endX - downX);
+                float distanceY = Math.abs(endY - downY);
+
+                if (distanceX > distanceY && distanceX > 5.0) {
+                    result = true;
+                }else {
+                    scrollToPager(mCurrentIndex);
+                }
+                break;
+            default:
+                break;
+        }
+        return result;
+    }
+
+    /**
+     * 触摸事件，
+     *
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
@@ -153,7 +204,7 @@ public class MyViewPager extends ViewGroup {
 
     @Override
     public void computeScroll() {
-        super.computeScroll();
+//        super.computeScroll();
         if (scroller.computeScrollOffset()) {
             float currX = scroller.getCurrentX();
 
@@ -167,7 +218,7 @@ public class MyViewPager extends ViewGroup {
         /**
          * 当页面改变的时候  回调本方法， 并将当前 页面的下标  回传
          *
-         * @param position
+         * @param position  当前页面的下标
          */
         void scrollToPager(int position);
     }

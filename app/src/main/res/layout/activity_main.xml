@@ -20,6 +20,7 @@
               android:id="@+id/youku_menu"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="#fff"
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
               android:text="自定义 优酷菜单" />
@@ -27,6 +28,7 @@
           <Button
               android:id="@+id/viewpager_item"
               android:layout_width="match_parent"
+              android:background="#fff"
               android:layout_height="wrap_content"
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
@@ -35,6 +37,7 @@
           <Button
               android:id="@+id/popup_windows_item"
               android:layout_width="match_parent"
+              android:background="#fff"
               android:layout_height="wrap_content"
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
@@ -45,6 +48,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="left|center_vertical"
+              android:background="#fff"
               android:paddingLeft="50dp"
               android:text="自定义 开关按钮" />
 
@@ -52,11 +56,13 @@
               android:id="@+id/auto_attribute_item"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="#fff"
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
               android:text="自定义 属性" />
           <Button
               android:id="@+id/my_view_pager_item"
+             android:background="#fff"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="left|center_vertical"
