@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SlideMenuItem"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,8 @@
         <activity android:name=".AutoAttributeItem" />
         <activity android:name=".MyToggleButtonItem" />
         <activity android:name=".MyViewPagerItem" />
-        <activity android:name=".QuickIndexItem"></activity>
+        <activity android:name=".QuickIndexItem" />
+        <activity android:name=".WaveItem"/>
     </application>
 
 </manifest>

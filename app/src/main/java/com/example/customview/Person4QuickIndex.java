@@ -14,6 +14,7 @@ public class Person4QuickIndex {
         this.pinyin = PinYinUtils.getPinYin(name);
     }
 
+
     public String getName() {
         return name;
     }

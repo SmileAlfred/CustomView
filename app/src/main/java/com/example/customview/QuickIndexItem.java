@@ -87,7 +87,7 @@ public class QuickIndexItem extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = View.inflate(QuickIndexItem.this, R.layout.activity_person_item_quick_index, null);
+                convertView = View.inflate(QuickIndexItem.this, R.layout.activity_slide_menu_item, null);
 
                 mViewHolder = new ViewHolder();
                 mViewHolder.wordText = convertView.findViewById(R.id.word_text_view_Item);

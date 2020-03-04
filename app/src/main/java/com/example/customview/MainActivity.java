@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button autoAttributeItem = findViewById(R.id.auto_attribute_item);
         Button myViewPagerItem = findViewById(R.id.my_view_pager_item);
         Button quickIndexItem = findViewById(R.id.quick_index_item);
+        Button slideMenuItem = findViewById(R.id.slide_menu_item);
+        Button waveItem = findViewById(R.id.wave_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoAttributeItem.setOnClickListener(this);
         myViewPagerItem.setOnClickListener(this);
         quickIndexItem.setOnClickListener(this);
+        slideMenuItem.setOnClickListener(this);
+        waveItem.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.quick_index_item:
                 Intent quickIndexIntent = new Intent(this, QuickIndexItem.class);
                 startActivity(quickIndexIntent);
+                break;
+            case R.id.slide_menu_item:
+                Intent slideMenuIntent = new Intent(this, SlideMenuItem.class);
+                startActivity(slideMenuIntent);
+                break;
+            case R.id.wave_item:
+                Intent waveIntent = new Intent(this, WaveItem.class);
+                startActivity(waveIntent);
                 break;
             default:
                 break;
