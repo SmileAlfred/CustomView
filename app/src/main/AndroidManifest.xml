@@ -16,13 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".YoukuMenu" />
         <activity android:name=".AdvanceItem" />
         <activity android:name=".PopupWindowsItem" />
         <activity android:name=".AutoAttributeItem" />
         <activity android:name=".MyToggleButtonItem" />
         <activity android:name=".MyViewPagerItem" />
+        <activity android:name=".QuickIndexItem"></activity>
     </application>
 
 </manifest>

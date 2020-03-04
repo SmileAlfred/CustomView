@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/word_text_view_Item"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="M"
+        android:textColor="#0000FF"
+        android:textSize="26sp" />
+
+
+    <TextView
+        android:id="@+id/name_text_view_Item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="马超"
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button toggleButtonItem = findViewById(R.id.toggle_button_item);
         Button autoAttributeItem = findViewById(R.id.auto_attribute_item);
         Button myViewPagerItem = findViewById(R.id.my_view_pager_item);
+        Button quickIndexItem = findViewById(R.id.quick_index_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toggleButtonItem.setOnClickListener(this);
         autoAttributeItem.setOnClickListener(this);
         myViewPagerItem.setOnClickListener(this);
+        quickIndexItem.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.my_view_pager_item:
                 Intent MyViewPagertemIntent = new Intent(this, MyViewPagerItem.class);
                 startActivity(MyViewPagertemIntent);
+                break;
+            case R.id.quick_index_item:
+                Intent quickIndexIntent = new Intent(this, QuickIndexItem.class);
+                startActivity(quickIndexIntent);
                 break;
             default:
                 break;

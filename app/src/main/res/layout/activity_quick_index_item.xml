@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.customview.TitleLayout
+        android:id="@+id/title_quick_index_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.customview.IndexView
+        android:id="@+id/words_index_view"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_quick_index_item"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+
+    <ListView
+        android:id="@+id/list_view_quick_index"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_quick_index_item"
+        android:layout_marginRight="40dp" />
+
+    <TextView
+        android:id="@+id/word_text_view_quick_index"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/title_quick_index_item"
+        android:layout_alignRight="@+id/list_view_quick_index"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:text="A"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>
