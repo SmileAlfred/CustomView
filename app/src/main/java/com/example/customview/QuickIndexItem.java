@@ -2,7 +2,6 @@ package com.example.customview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Person;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -87,7 +86,7 @@ public class QuickIndexItem extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = View.inflate(QuickIndexItem.this, R.layout.activity_slide_menu_item, null);
+                convertView = View.inflate(QuickIndexItem.this, R.layout.activity_person_item_quick_index, null);
 
                 mViewHolder = new ViewHolder();
                 mViewHolder.wordText = convertView.findViewById(R.id.word_text_view_Item);
@@ -153,7 +152,7 @@ public class QuickIndexItem extends AppCompatActivity {
 
     private void upDateListView(String word) {
         for (int i = 0; i < persons.size(); i++) {
-            String listWord = persons.get(i).getPinyin().substring(0,1);
+            String listWord = persons.get(i).getPinyin().substring(0, 1);
             if (word.equals(listWord)) {
                 mListView.setSelection(i);  //注意这个 .setSelection() ;
                 return;

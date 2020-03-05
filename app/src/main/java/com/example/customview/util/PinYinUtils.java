@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.util;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

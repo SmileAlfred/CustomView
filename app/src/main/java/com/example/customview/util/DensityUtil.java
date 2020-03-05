@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.util;
 
 import android.content.Context;
 

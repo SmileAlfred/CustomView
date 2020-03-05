@@ -72,14 +72,14 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                 if (isShowLevel3) {
                     isShowLevel2 = false;
                     isShowLevel3 = false;
-                    Tools.hideView(level2Medium, 200);
-                    Tools.hideView(level3Large);
+                    YouKuMenuTools.hideView(level2Medium, 200);
+                    YouKuMenuTools.hideView(level3Large);
                 } else if (isShowLevel2) {
                     isShowLevel2 = false;
-                    Tools.hideView(level2Medium);
+                    YouKuMenuTools.hideView(level2Medium);
                 } else {
                     isShowLevel2 = true;
-                    Tools.showView(level2Medium);
+                    YouKuMenuTools.showView(level2Medium);
                 }
 
                 break;
@@ -87,10 +87,10 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                 //如果显示，让其隐藏；如果隐藏让其显示
                 if (isShowLevel3) {
                     isShowLevel3 = false;
-                    Tools.hideView(level3Large);
+                    YouKuMenuTools.hideView(level3Large);
                 } else {
                     isShowLevel3 = true;
-                    Tools.showView(level3Large);
+                    YouKuMenuTools.showView(level3Large);
                 }
                 break;
             case R.id.title_edit_button:
@@ -98,15 +98,15 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                 if (isShowLevel1 || isShowLevel2 || isShowLevel3) {
                     if (isShowLevel3) {
                         isShowLevel3 = false;
-                        Tools.hideView(level3Large);
+                        YouKuMenuTools.hideView(level3Large);
                     }
                     if (isShowLevel2) {
                         isShowLevel2 = false;
-                        Tools.hideView(level2Medium, 200);
+                        YouKuMenuTools.hideView(level2Medium, 200);
                     }
                     if (isShowLevel1) {
                         isShowLevel1 = false;
-                        Tools.hideView(level1Small, 400);
+                        YouKuMenuTools.hideView(level1Small, 400);
                     }
                 }
                 //如果隐藏，就让其显示
@@ -114,8 +114,8 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                     isShowLevel1 = true;
                     isShowLevel2 = true;
 
-                    Tools.showView(level1Small);
-                    Tools.showView(level2Medium, 200);
+                    YouKuMenuTools.showView(level1Small);
+                    YouKuMenuTools.showView(level2Medium, 200);
                 }
             default:
                 break;
@@ -134,14 +134,14 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                 isShowLevel2 = false;
                 isShowLevel3 = false;
 
-                Tools.hideView(level1Small, 400);
-                Tools.hideView(level2Medium, 200);
-                Tools.hideView(level3Large);
+                YouKuMenuTools.hideView(level1Small, 400);
+                YouKuMenuTools.hideView(level2Medium, 200);
+                YouKuMenuTools.hideView(level3Large);
             }
             //如果 一、二、三 级菜单都隐藏就显示 一、二 级菜单
             if (!(isShowLevel1 && isShowLevel2 && isShowLevel3)) {
-                Tools.showView(level1Small);
-                Tools.showView(level2Medium, 200);
+                YouKuMenuTools.showView(level1Small);
+                YouKuMenuTools.showView(level2Medium, 200);
             }
             return true;
         }

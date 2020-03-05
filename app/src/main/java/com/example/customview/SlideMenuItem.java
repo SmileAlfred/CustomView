@@ -151,14 +151,15 @@ public class SlideMenuItem extends AppCompatActivity {
                 }
             });
 
-            SlideLayout slideLayout = (SlideLayout) convertView;
-            slideLayout.setOnStateChangeListener(mOnStateChangeListener);
+            SlideLayout SlideLayout = (SlideLayout) convertView;
+            mOnStateChangeListener = new MyOnStateChangeListener();
+            SlideLayout.setOnStateChangeListener(mOnStateChangeListener);
             return convertView;
         }
     }
 
     private SlideLayout mSlideLayout;
-    private MyOnStateChangeListener mOnStateChangeListener = new MyOnStateChangeListener();
+    private MyOnStateChangeListener mOnStateChangeListener;
 
     class MyOnStateChangeListener implements SlideLayout.OnStateChangeListener {
 

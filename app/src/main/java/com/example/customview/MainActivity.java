@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(YoukuMenuIntent);
                 break;
             case R.id.viewpager_item:
-                Intent AdvanceItemIntent = new Intent(this, AdvanceItem.class);
+                Intent AdvanceItemIntent = new Intent(this, SecAdvanceItem.class);
                 startActivity(AdvanceItemIntent);
                 break;
             case R.id.popup_windows_item:

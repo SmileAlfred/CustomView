@@ -1,5 +1,7 @@
 package com.example.customview;
 
+import com.example.customview.util.PinYinUtils;
+
 /**
  * @author LiuSaiSai
  * @description:    通过 设置构造器  当 new person的时候，获取得到 拼音

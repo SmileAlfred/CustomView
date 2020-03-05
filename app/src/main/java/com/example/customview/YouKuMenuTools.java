@@ -19,7 +19,7 @@ import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
  * 2.利用属性动画特性解决 将原来的 视图动画 替换成 属性动画ObjectAnimator
  * @date :2020/02/27 8:44
  */
-public class Tools {
+public class YouKuMenuTools {
 
     public static void hideView(ViewGroup view) {
         hideView(view, 0);

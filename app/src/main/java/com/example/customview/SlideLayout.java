@@ -172,6 +172,9 @@ public class SlideLayout extends FrameLayout {
 
                 if (DX > 8) {
                     intercept = true;
+                } else {
+                    intercept = false;
+                    closeMenu();
                 }
                 break;
             case MotionEvent.ACTION_UP:
