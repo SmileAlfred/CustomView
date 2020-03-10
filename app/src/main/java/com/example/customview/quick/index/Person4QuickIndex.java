@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.quick.index;
 
 import com.example.customview.util.PinYinUtils;
 

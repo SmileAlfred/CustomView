@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.youku.menu;
 
 import android.animation.ObjectAnimator;
 import android.provider.FontsContract;

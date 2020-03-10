@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.my.viewpager;
 
 import android.os.SystemClock;
 

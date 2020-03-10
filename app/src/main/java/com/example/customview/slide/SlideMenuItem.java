@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.slide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.customview.R;
+import com.example.customview.quick.index.Person4QuickIndex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ public class SlideMenuItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_menu_item);
-//        setContentView(R.layout.activity_item_slide);
+//        setContentView(R.activity_main.activity_item_slide);
 
         mListViewiew = findViewById(R.id.list_view_slide_menu);
         /**

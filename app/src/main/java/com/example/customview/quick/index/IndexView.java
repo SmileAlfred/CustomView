@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.quick.index;
 
 import android.content.Context;
 import android.graphics.Canvas;

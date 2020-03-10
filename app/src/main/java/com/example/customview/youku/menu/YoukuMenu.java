@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.youku.menu;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.customview.R;
 
 /**
  * @author LiuSaiSai

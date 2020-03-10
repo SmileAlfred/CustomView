@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.wave;
 
 import android.content.Context;
 import android.graphics.Canvas;

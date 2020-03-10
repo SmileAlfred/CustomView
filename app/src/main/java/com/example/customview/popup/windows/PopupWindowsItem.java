@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.popup.windows;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.customview.R;
 import com.example.customview.util.DensityUtil;
 
 import java.util.ArrayList;
@@ -26,11 +27,11 @@ import java.util.List;
  * mPopupWindow.setContentView(listView);
  * mPopupWindow.showAsDropDown(mEditTextPopup);    //还可以在 mEditTextPopup 之后设置参数 离左右的距离，均设置为 0
  * mPopupWindow.dismiss();
- * ？？？ .getView() 中 convertView = View.inflate(PopupWindowsItem.this, R.layout.activity_popup_drop_item, null);
- * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_popup_drop_item, parent, false);
+ * ？？？ .getView() 中 convertView = View.inflate(PopupWindowsItem.this, R.activity_main.activity_popup_drop_item, null);
+ * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.activity_main.activity_popup_drop_item, parent, false);
  * ____________________inflate方法的主要作用就是将xml转换成一个View对象:
- * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_popup_drop_item, parent, false);两种均可；
- * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_popup_drop_item, parent, false);View.inflate 是静态方法，简单功能少；
+ * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.activity_main.activity_popup_drop_item, parent, false);两种均可；
+ * ____________________convertView = LayoutInflater.from(parent.getContext()).inflate(R.activity_main.activity_popup_drop_item, parent, false);View.inflate 是静态方法，简单功能少；
  * ____________________LayoutInflater.from(parent.getContext()).inflate 抽象方法；功能强大，推荐使用；具体使用视情况稳定
  * @date :2020/02/29 15:22
  */
@@ -130,7 +131,7 @@ public class PopupWindowsItem extends AppCompatActivity {
             ViewHolder viewHolder;
             if (convertView == null) {
                 //??? 这行代码出错。这和书上写的不一致。不懂 → inflate方法的主要作用就是将xml转换成一个View对象
-//                convertView = View.inflate(PopupWindowsItem.this, R.layout.activity_popup_drop_item, null);
+//                convertView = View.inflate(PopupWindowsItem.this, R.activity_main.activity_popup_drop_item, null);
                 convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_popup_drop_item, parent, false);
 
                 viewHolder = new ViewHolder();

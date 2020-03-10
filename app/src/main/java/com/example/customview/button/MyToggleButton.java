@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.button;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.customview.R;
+
 /**
  * @author LiuSaiSai
  * @description: 自定义控件 状态开关按钮
@@ -19,7 +21,7 @@ import androidx.annotation.Nullable;
  * 2. 测量 measure(int,int)； → 重写onMeasure()
  * 2.1. 如果当前的 View 是 ViewGroup 还要测量孩子；
  * 2.2. 孩子有建议权
- * 3. 指定位置 layout → 抽象onLayout()；View 不必重写，ViewGroup 才重写
+ * 3. 指定位置 activity_main → 抽象onLayout()；View 不必重写，ViewGroup 才重写
  * 4. 绘制视图； draw() → onDraw(canvas)；根据上面两个方法参数，进入绘制
  * BUG:× × × × × × × 不响应 Move 和 Up >>>原因：case MotionEvent.ACTION_DOWN:  而非 MotionEvent.ACTION_POINTER_DOWN
  * @date :2020/03/01 10:46

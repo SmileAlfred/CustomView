@@ -1,8 +1,10 @@
-package com.example.customview;
+package com.example.customview.attribute;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.customview.R;
 
 /**
  * @author LiuSaiSai

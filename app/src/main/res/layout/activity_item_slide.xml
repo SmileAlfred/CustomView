@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.customview.SlideLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.customview.slide.SlideLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp">
 
@@ -12,4 +12,4 @@
         android:id="@+id/item_menu_slide"
         layout="@layout/item_menu_slide" />
 
-</com.example.customview.SlideLayout>
+</com.example.customview.slide.SlideLayout>

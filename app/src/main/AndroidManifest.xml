@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SlideMenuItem"></activity>
+        <activity android:name=".slide.SlideMenuItem"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YoukuMenu" />
-        <activity android:name=".SecAdvanceItem" />
-        <activity android:name=".PopupWindowsItem" />
-        <activity android:name=".AutoAttributeItem" />
-        <activity android:name=".MyToggleButtonItem" />
-        <activity android:name=".MyViewPagerItem" />
-        <activity android:name=".QuickIndexItem" />
-        <activity android:name=".WaveItem"/>
+        <activity android:name=".youku.menu.YoukuMenu" />
+        <activity android:name=".advance.AdvanceItem" />
+        <activity android:name=".popup.windows.PopupWindowsItem" />
+        <activity android:name=".attribute.AutoAttributeItem" />
+        <activity android:name=".button.MyToggleButtonItem" />
+        <activity android:name=".my.viewpager.MyViewPagerItem" />
+        <activity android:name=".quick.index.QuickIndexItem" />
+        <activity android:name=".wave.WaveItem"/>
     </application>
 
 </manifest>

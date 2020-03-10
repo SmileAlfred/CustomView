@@ -7,6 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.customview.advance.AdvanceItem;
+import com.example.customview.attribute.AutoAttributeItem;
+import com.example.customview.button.MyToggleButtonItem;
+import com.example.customview.my.viewpager.MyViewPagerItem;
+import com.example.customview.popup.windows.PopupWindowsItem;
+import com.example.customview.quick.index.QuickIndexItem;
+import com.example.customview.slide.SlideMenuItem;
+import com.example.customview.wave.WaveItem;
+import com.example.customview.youku.menu.YoukuMenu;
+
 /**
  * 这是 自定义控件 学习笔记
  */
@@ -46,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(YoukuMenuIntent);
                 break;
             case R.id.viewpager_item:
-                Intent AdvanceItemIntent = new Intent(this, SecAdvanceItem.class);
+                Intent AdvanceItemIntent = new Intent(this, AdvanceItem.class);
                 startActivity(AdvanceItemIntent);
                 break;
             case R.id.popup_windows_item:

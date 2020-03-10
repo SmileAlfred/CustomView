@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.advance;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.customview.R;
 import com.example.customview.util.DensityUtil;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.List;
  * BUG： 小红点消失了？！ 实际上是 params 设置的太小了，看不到！
  * @date :2020/02/27 11:50
  */
-public class SecAdvanceItem extends AppCompatActivity {
+public class AdvanceItem extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private TextView mTextAdvanceItem;
@@ -101,14 +102,14 @@ public class SecAdvanceItem extends AppCompatActivity {
 
             point.setBackgroundResource(R.drawable.point_selector);//丢了关键一步！这里设置的是 selector；而selector设置了true或false
 
-            int radium = DensityUtil.dip2px(SecAdvanceItem.this, 8);
+            int radium = DensityUtil.dip2px(AdvanceItem.this, 8);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(radium, radium);   //  params 用于设置 点的 间隔
 
             if (i == 0) {
                 point.setEnabled(true);     //显示红色
             } else {
                 point.setEnabled(false);    //显示灰色
-                params.leftMargin = DensityUtil.dip2px(SecAdvanceItem.this, 8);     //不是 第0 个点，就距离左边 8 个像素。
+                params.leftMargin = DensityUtil.dip2px(AdvanceItem.this, 8);     //不是 第0 个点，就距离左边 8 个像素。
             }
             point.setLayoutParams(params);
 
@@ -249,7 +250,7 @@ public class SecAdvanceItem extends AppCompatActivity {
                 public void onClick(View v) {
                     int position = (int) v.getTag() % mImageViewList.size();
                     String imageDescriptionText = imageDescriptions[position];
-                    Toast.makeText(SecAdvanceItem.this, imageDescriptionText, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdvanceItem.this, imageDescriptionText, Toast.LENGTH_SHORT).show();
                 }
             });
             return imageView;

@@ -1,4 +1,4 @@
-package com.example.customview;
+package com.example.customview.my.viewpager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.customview.R;
 
 
 /**
