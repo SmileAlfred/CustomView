@@ -94,6 +94,14 @@
               android:gravity="left|center_vertical"
               android:paddingLeft="50dp"
               android:text="自定义 水波纹" />
+           <Button
+              android:id="@+id/property_animation_item"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#fff"
+              android:gravity="left|center_vertical"
+              android:paddingLeft="50dp"
+              android:text="自定义 属性动画" />
       </LinearLayout>
 
     </ScrollView>

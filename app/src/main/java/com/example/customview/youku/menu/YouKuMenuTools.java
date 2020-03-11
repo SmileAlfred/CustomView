@@ -31,57 +31,66 @@ public class YouKuMenuTools {
 
     public static void hideView(ViewGroup view, long startOffSet) {
 
-        /*
-        //旋转工具类;此时传入四个参数：起始角度，结束角度，旋转中心的 X Y坐标
-        //这个 X Y坐标有瑕疵；参考系是怎样定的？控件本身的宽没有充满屏幕——效果没有错，自己的理解有瑕疵
-        RotateAnimation hideRotate = new RotateAnimation(0, 180, view.getWidth() / 2, view.getHeight());
-        hideRotate.setDuration(500);    //设置动画的毫秒数    视图动画
-        hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
-        hideRotate.setStartOffset(startOffSet); //设置动画延迟多久后执行
-        view.startAnimation(hideRotate);
+        /**
+         * 解决 BUG 方法一：隐藏后 将所有孩子设置成不可 点击
+         //旋转工具类;此时传入四个参数：起始角度，结束角度，旋转中心的 X Y坐标
+         //这个 X Y坐标有瑕疵；参考系是怎样定的？控件本身的宽没有充满屏幕——效果没有错，自己的理解有瑕疵
+         //坐标是 默认的从 View 的左上角为原点*
+         RotateAnimation hideRotate = new RotateAnimation(0, 180, view.getWidth() / 2, view.getHeight());
+         hideRotate.setDuration(500);    //设置动画的毫秒数    视图动画
+         hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
+         hideRotate.setStartOffset(startOffSet); //设置动画延迟多久后执行
+         view.startAnimation(hideRotate);
 
-        // View 和 ViewGroup 的区别，ViewGroup可以操作其孩子(控件中的子控件)；而 View 不行；导致隐藏后，孩子还可以被点击；
-        // 故将其改为ViewGroup;并且遍历其孩子，将每一个孩子都设置成 false
-        for (int count = 0; count < view.getChildCount(); count++) {
-            View childrenView = view.getChildAt(count);
-            childrenView.setEnabled(false);
-        }
-        //一、设置隐藏后不可以点击；这样不好使；没有操作其子控件
-        //view.setEnabled(false);
-        */
+         // View 和 ViewGroup 的区别，ViewGroup可以操作其孩子(控件中的子控件)；而 View 不行；导致隐藏后，孩子还可以被点击；
+         // 故将其改为ViewGroup;并且遍历其孩子，将每一个孩子都设置成 false
+         for (int count = 0; count < view.getChildCount(); count++) {
+         View childrenView = view.getChildAt(count);
+         childrenView.setEnabled(false);
+         }
+         //一、设置隐藏后还可以点击；这样不好使；没有操作其子控件
+         //view.setEnabled(false);
+         */
 
-        //属性动画解决 BUG  ObjectAnimator
-        //view.setRotation();
+        /**
+         * 解决 BUG 方法二： 属性动画解决 BUG  ObjectAnimator
+         * 旋转动画： view.setRotation();
+         */
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", 0, 180);
         animator.setDuration(500);               //设置动画的毫秒数
-        animator.setStartDelay(startOffSet);     //设置动画播放完成后停留在最后的 状态
+        animator.setStartDelay(startOffSet);     //设置动画 延迟多久后 执行
         animator.start();
 
-        view.setPivotX(view.getWidth() / 2);     //设置旋转中心；错误方法 .setRotationX()
+        view.setPivotX(view.getWidth() / 2);     //设置旋转中心；错误方法 .setRotationX() → 3D旋转
         view.setPivotY(view.getHeight());
     }
 
     public static void showView(ViewGroup view, long startOffSet) {
-        /*
-        RotateAnimation hideRotate = new RotateAnimation(180, 360, view.getWidth() / 2, view.getHeight());
-        hideRotate.setDuration(500);    //设置动画的毫秒数
-        hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
-        hideRotate.setStartOffset(startOffSet); //设置动画延迟多久后执行
-        view.startAnimation(hideRotate);
+        /**
+         * 解决 BUG 方法一：隐藏后 将所有孩子 <ViewGroup 才能操作孩子> 设置成不可 点击
+         //旋转动画
+         RotateAnimation hideRotate = new RotateAnimation(180, 360, view.getWidth() / 2, view.getHeight());
+         hideRotate.setDuration(500);    //设置动画的毫秒数
+         hideRotate.setFillAfter(true);  //设置动画播放完成后停留在最后的 状态；
+         hideRotate.setStartOffset(startOffSet); //设置动画 延迟多久后 执行
+         view.startAnimation(hideRotate);
 
-        for (int count = 0; count < view.getChildCount(); count++) {
-            View childrenView = view.getChildAt(count);
-            childrenView.setEnabled(true);
-        }
-        //一、设置 显示 后还可以点击
-        //view.setEnabled(true);
-        */
+         for (int count = 0; count < view.getChildCount(); count++) {
+         View childrenView = view.getChildAt(count);
+         childrenView.setEnabled(true);
+         }
+         //一、BUG未解决；因为没有设置孩子，View  不能操作孩子
+         //view.setEnabled(true);
+         */
 
-        //属性动画解决 BUG  ObjectAnimator
-        //view.setRotation();
+
+        /**
+         * 解决 BUG 方法二： 属性动画解决 BUG  ObjectAnimator
+         * view.setRotation();
+         */
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotation", 180, 360);
         animator.setDuration(500);                   //设置动画的毫秒数
-        animator.setStartDelay(startOffSet);         //设置动画播放完成后停留在最后的 状态
+        animator.setStartDelay(startOffSet);         //设置动画的 延迟时间
         animator.start();
 
         view.setPivotX(view.getWidth() / 2);         //设置旋转中心；错误方法 .setRotationX()

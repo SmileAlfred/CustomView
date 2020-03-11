@@ -17,7 +17,7 @@ import com.example.customview.R;
 
 /**
  * @author LiuSaiSai
- * @description: 自定义属性类
+ * @description: 自定义属性类；
  * @date :2020/03/01 18:22
  */
 public class MyAttributeView extends View {
@@ -71,7 +71,8 @@ public class MyAttributeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         mPaint = new Paint();
-        canvas.drawText(mName + mAge, 500, 500, mPaint);
-        canvas.drawBitmap(mBitmap, 200, 500, mPaint);
+        mPaint.setTextSize(66);
+        canvas.drawText(mName + "今年" +  mAge +"岁", 500, 400, mPaint);
+        canvas.drawBitmap(mBitmap, 100, 500, mPaint);
     }
 }

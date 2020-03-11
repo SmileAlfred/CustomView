@@ -12,13 +12,18 @@ import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
 import com.example.customview.my.viewpager.MyViewPagerItem;
 import com.example.customview.popup.windows.PopupWindowsItem;
+import com.example.customview.property.animation.PropertyAnimation;
 import com.example.customview.quick.index.QuickIndexItem;
 import com.example.customview.slide.SlideMenuItem;
 import com.example.customview.wave.WaveItem;
 import com.example.customview.youku.menu.YoukuMenu;
 
 /**
- * 这是 自定义控件 学习笔记
+ * 自定义控件 学习笔记
+ * 需要掌握的重点：
+ * 1. View 和 ViewGroup 的区别；
+ * 2. Android 中的时间传递；
+ * 3. View 的原理
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button quickIndexItem = findViewById(R.id.quick_index_item);
         Button slideMenuItem = findViewById(R.id.slide_menu_item);
         Button waveItem = findViewById(R.id.wave_item);
+        Button propertyAnimationItem = findViewById(R.id.property_animation_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         quickIndexItem.setOnClickListener(this);
         slideMenuItem.setOnClickListener(this);
         waveItem.setOnClickListener(this);
+        propertyAnimationItem.setOnClickListener(this);
     }
 
     @Override
@@ -86,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.wave_item:
                 Intent waveIntent = new Intent(this, WaveItem.class);
                 startActivity(waveIntent);
+                break;
+            case R.id.property_animation_item:
+                Intent propertyAnimationIntent = new Intent(this, PropertyAnimation.class);
+                startActivity(propertyAnimationIntent);
                 break;
             default:
                 break;

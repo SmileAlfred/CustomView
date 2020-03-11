@@ -4,11 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.example.customview.attribute.MyAttributeView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         smilealfred:age="25"
-        smilealfred:name="liusaisai"
+        smilealfred:name="刘赛赛"
         smilealfred:picture="@drawable/qq_icon" />
 </RelativeLayout>

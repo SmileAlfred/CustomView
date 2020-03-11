@@ -69,16 +69,18 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.home_youku_menu:
-                //如果大菜单和中菜单都是显示的，让其隐藏
-                //如果大菜单和中菜单都是隐藏的，二级菜单显示
-                if (isShowLevel3) {
-                    isShowLevel2 = false;
-                    isShowLevel3 = false;
-                    YouKuMenuTools.hideView(level2Medium, 200);
-                    YouKuMenuTools.hideView(level3Large);
-                } else if (isShowLevel2) {
+                /**
+                 * 如果大菜单和中菜单都是显示的，让其隐藏
+                 * 逻辑：没有二级菜单，就没有三级菜单；所以先判断 isShowLevel2 更好
+                 * 如果大菜单和中菜单都是隐藏的，二级菜单显示
+                 */
+                if (isShowLevel2) {
                     isShowLevel2 = false;
                     YouKuMenuTools.hideView(level2Medium);
+                    if (isShowLevel3) {
+                        isShowLevel3 = false;
+                        YouKuMenuTools.hideView(level3Large);
+                    }
                 } else {
                     isShowLevel2 = true;
                     YouKuMenuTools.showView(level2Medium);
@@ -97,22 +99,19 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.title_edit_button:
                 //设置右上角的点击事件；如果菜单存在；则让其隐藏；
-                if (isShowLevel1 || isShowLevel2 || isShowLevel3) {
-                    if (isShowLevel3) {
-                        isShowLevel3 = false;
-                        YouKuMenuTools.hideView(level3Large);
-                    }
+                if (isShowLevel1) {
+                    isShowLevel1 = false;
+                    YouKuMenuTools.hideView(level1Small, 400);
                     if (isShowLevel2) {
                         isShowLevel2 = false;
                         YouKuMenuTools.hideView(level2Medium, 200);
+                        if (isShowLevel3) {
+                            isShowLevel3 = false;
+                            YouKuMenuTools.hideView(level3Large);
+                        }
                     }
-                    if (isShowLevel1) {
-                        isShowLevel1 = false;
-                        YouKuMenuTools.hideView(level1Small, 400);
-                    }
-                }
-                //如果隐藏，就让其显示
-                else {
+                } else {
+                    //如果隐藏，就让其显示
                     isShowLevel1 = true;
                     isShowLevel2 = true;
 

@@ -24,7 +24,8 @@
         <activity android:name=".button.MyToggleButtonItem" />
         <activity android:name=".my.viewpager.MyViewPagerItem" />
         <activity android:name=".quick.index.QuickIndexItem" />
-        <activity android:name=".wave.WaveItem"/>
+        <activity android:name=".wave.WaveItem" />
+        <activity android:name=".property.animation.PropertyAnimation" />
     </application>
 
 </manifest>

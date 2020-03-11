@@ -30,7 +30,7 @@
             android:padding="3dp"
             android:text="我爱你中国"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/point_advance_item"

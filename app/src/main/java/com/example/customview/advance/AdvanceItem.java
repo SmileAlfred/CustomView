@@ -29,6 +29,7 @@ import java.util.List;
  * 3. 实现自动滑动？1. for + sleep ? 2. handler
  * 4. 按住就不再自动滑动
  * BUG： 小红点消失了？！ 实际上是 params 设置的太小了，看不到！
+ * ※ ※ ※ ※ 设置“点” ·
  * @date :2020/02/27 11:50
  */
 public class AdvanceItem extends AppCompatActivity {
@@ -48,15 +49,15 @@ public class AdvanceItem extends AppCompatActivity {
             R.drawable.advance_woods_path,};
 
     private final String[] imageDescriptions = {
-            "3D环绕", "广袤森林", "一路向前", "万园之园", "", "俯瞰马路"
+            "3D环绕", "广袤森林", "一路向前", "万园之园", "俯瞰马路"
     };
 
     /**
-     * 记录 上一个点的位置
+     * 记录 上一个 高亮显示点的位置
      */
     private int prePosition = 0;
     /**
-     * 是否 已经 滑动
+     * 是否 已经 用手 拖动
      */
     private boolean isDragging = false;    //广告标题集合
 
@@ -66,7 +67,7 @@ public class AdvanceItem extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1); //自动化东到下一页
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1); //自动 滑动 到下一页
 
             mHandler.sendEmptyMessageDelayed(0, 3000);  //发延迟消息
         }
@@ -93,12 +94,10 @@ public class AdvanceItem extends AppCompatActivity {
         for (int i = 0; i < imageIds.length; i++) {
 
             ImageView imageView = new ImageView(this);
-
             imageView.setBackgroundResource(imageIds[i]);   //这里使用的是 setBackgroundResource；不是 src 避免图片不能充满；也不是setBackground
-
             mImageViewList.add(imageView);                  //添加到自己的 数据集合中
 
-            ImageView point = new ImageView(this);  // 添加点
+            ImageView point = new ImageView(this);  // 添加点 → 选择器 → enable；true 高亮显示红色
 
             point.setBackgroundResource(R.drawable.point_selector);//丢了关键一步！这里设置的是 selector；而selector设置了true或false
 
@@ -109,7 +108,7 @@ public class AdvanceItem extends AppCompatActivity {
                 point.setEnabled(true);     //显示红色
             } else {
                 point.setEnabled(false);    //显示灰色
-                params.leftMargin = DensityUtil.dip2px(AdvanceItem.this, 8);     //不是 第0 个点，就距离左边 8 个像素。
+                params.leftMargin = DensityUtil.dip2px(AdvanceItem.this, 8);     //不是 第0 个点，就距离左边 8 个 dp <像素>。
             }
             point.setLayoutParams(params);
 
@@ -122,10 +121,13 @@ public class AdvanceItem extends AppCompatActivity {
          *          解决：.setCurrentItem() 将初始位置设置在中间
          */
         mViewPager.setAdapter(new MyPagerAdapter());
-
+        /**
+         * 设置 监听 页面的变化，实现页面滑动时点变化
+         */
         mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());   //设置监听 点的位置的改变
 
-        mViewPager.setCurrentItem(50);  //如果你想初始位置在首页，那么就让其能整除 页面总数；
+        //保证是 mImageViewList.size()的整数倍 int item = Integer.MAX_VALUE /2 - Integer.MAX_VALUE /2 % mImageViewList.size()
+        mViewPager.setCurrentItem(500);  //如果你想初始位置在首页，那么就让其能整除 页面总数；
 
         mTextAdvanceItem.setText(imageDescriptions[prePosition]);
 
@@ -176,12 +178,15 @@ public class AdvanceItem extends AppCompatActivity {
          */
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (state == ViewPager.SCROLL_STATE_DRAGGING) {   //拖拽
+            if (state == ViewPager.SCROLL_STATE_DRAGGING) {   //用手拖拽时 触发
                 isDragging = true;
                 mHandler.removeCallbacksAndMessages(null);
-            } else if (state == ViewPager.SCROLL_STATE_SETTLING) {
+            } else if (state == ViewPager.SCROLL_STATE_SETTLING) {  //自动滑动 时 触发
 
-            } else if (state == ViewPager.SCROLL_STATE_IDLE && isDragging) { //空闲
+            } else if (state == ViewPager.SCROLL_STATE_IDLE && isDragging) { // SCROLL_STATE_IDLE 空闲 不动 时状态
+                /**
+                 * 手指拖动后，让他闲置时，进行如下方法；解决  一旦人为滑动后， viewpager 就不动弹的BUG
+                 */
                 isDragging = false;
                 mHandler.removeCallbacksAndMessages(null);
                 mHandler.sendEmptyMessageDelayed(0, 4000);
@@ -191,14 +196,14 @@ public class AdvanceItem extends AppCompatActivity {
     }
 
     /**
-     * 为 ViewPager 设置适配器；此处重写了四个方法
+     * 为 ViewPager 设置适配器；此处必须 重写四个方法
      */
     class MyPagerAdapter extends PagerAdapter {
 
         @Override
         public int getCount() {
-//            return mImageViewList.size(); //本方法无法实现 无限循环
-            return 100;
+            //return mImageViewList.size(); //本方法无法实现 无限循环
+            return 1000;
         }
 
         /**
@@ -215,21 +220,32 @@ public class AdvanceItem extends AppCompatActivity {
             final ImageView imageView = mImageViewList.get(realPosition);
             container.addView(imageView);
 
+            /**
+             * 手指摁下 或 滑动时 停止滑动：
+             * 出现 BUG ：一旦手指滑动后，触发的是 DOWN 和 CANCEL 而不是 UP；即，一滑动以后，就再不动弹了
+             * 解决方法：在 页面监听器 中的 onPageScrollStateChanged() 中，
+             * 对“state == ViewPager.SCROLL_STATE_IDLE && isDragging” 情况进行处理
+             */
             imageView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:   //手指摁下
+                            /**
+                             * 一旦被触发，handler 队列的消息全部移除
+                             */
                             mHandler.removeCallbacksAndMessages(null);
                             break;
+
                         case MotionEvent.ACTION_MOVE:   //手指滑动
                             break;
-                        case MotionEvent.ACTION_CANCEL:   //手指滑动
-//                            mHandler.removeCallbacksAndMessages(null);
-//                            mHandler.sendEmptyMessageDelayed(0, 3000);
+                        case MotionEvent.ACTION_CANCEL:   // 时间取消；手指滑动时 不会触发 UP 而是触发 Cancel
                             break;
                         case MotionEvent.ACTION_UP:     //手指离开
                             mHandler.removeCallbacksAndMessages(null);
+                            /**
+                             * 手指离开再发消息；发消息前 要把 老消息移除
+                             */
                             mHandler.sendEmptyMessageDelayed(0, 3000);
                             break;
                         default:
@@ -241,13 +257,17 @@ public class AdvanceItem extends AppCompatActivity {
             /**
              * 设置图片的点击事件；
              * 1. 设置 .setTag() 是为了指导此处是哪个位置;
-             * 2. 将触摸事件返回 false； 否则点击事件没有用;
+             * 2. 出现 BUG ：点击事件没有作用，只有触摸事件
+             * 2.1 解决方法：将触摸事件返回 false； 否则点击事件没有用;
              * 3. position 取模，不然就角标越界。
              */
             imageView.setTag(position);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    /**
+                     * position 必须取模 ，不然就回 越界
+                     */
                     int position = (int) v.getTag() % mImageViewList.size();
                     String imageDescriptionText = imageDescriptions[position];
                     Toast.makeText(AdvanceItem.this, imageDescriptionText, Toast.LENGTH_SHORT).show();
@@ -281,5 +301,4 @@ public class AdvanceItem extends AppCompatActivity {
             container.removeView((View) object);
         }
     }
-
 }
