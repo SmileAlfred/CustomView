@@ -26,6 +26,11 @@
         <activity android:name=".quick.index.QuickIndexItem" />
         <activity android:name=".wave.WaveItem" />
         <activity android:name=".property.animation.PropertyAnimation" />
+        <activity android:name=".scrollbyandscrollto.TestScrollByAndScrollTo" />
+        <activity android:name=".touch_eventtest.TouchEventActivity" />
+        <activity android:name=".dispatch.DispatchActivity" />
+        <activity android:name=".wave_full.WaveFullItem" />
+        <activity android:name=".test.HK"/>
     </application>
 
 </manifest>

@@ -144,9 +144,14 @@ public class QuickIndexItem extends AppCompatActivity {
         mTextView.setVisibility(View.VISIBLE);
         mTextView.setText(word);
 
+        /**
+         * 这里是 .postDelayed() 而不是 .sendEmptyMessageDelayed();
+         * 获取线程名称：Thread.currentThread().getName()
+         * 是在 主线程中进行的；handler 在哪 new 的，其线程就是在那里运行
+         */
         mHandler.postDelayed(new Runnable() {
             @Override
-            public void run() {// 是在 主线程中进行的
+            public void run() {
                 mTextView.setVisibility(View.GONE);
             }
         }, 2000);

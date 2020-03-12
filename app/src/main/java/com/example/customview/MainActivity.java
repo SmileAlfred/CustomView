@@ -10,12 +10,17 @@ import android.widget.Button;
 import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
+import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
 import com.example.customview.popup.windows.PopupWindowsItem;
 import com.example.customview.property.animation.PropertyAnimation;
 import com.example.customview.quick.index.QuickIndexItem;
+import com.example.customview.scrollbyandscrollto.TestScrollByAndScrollTo;
 import com.example.customview.slide.SlideMenuItem;
+import com.example.customview.test.HK;
+import com.example.customview.touch_eventtest.TouchEventActivity;
 import com.example.customview.wave.WaveItem;
+import com.example.customview.wave_full.WaveFullItem;
 import com.example.customview.youku.menu.YoukuMenu;
 
 /**
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button slideMenuItem = findViewById(R.id.slide_menu_item);
         Button waveItem = findViewById(R.id.wave_item);
         Button propertyAnimationItem = findViewById(R.id.property_animation_item);
+        Button scrollByTestItem = findViewById(R.id.scrollby_test_item);
+        Button TouchEventItem = findViewById(R.id.touch_event_item);
+        Button DispatchItem = findViewById(R.id.dispatch_item);
+        Button WaveFullItem = findViewById(R.id.wave_full_item);
+        Button HKItem = findViewById(R.id.hk_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -53,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         slideMenuItem.setOnClickListener(this);
         waveItem.setOnClickListener(this);
         propertyAnimationItem.setOnClickListener(this);
+        scrollByTestItem.setOnClickListener(this);
+        TouchEventItem.setOnClickListener(this);
+        DispatchItem.setOnClickListener(this);
+        WaveFullItem.setOnClickListener(this);
+        HKItem.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +112,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.property_animation_item:
                 Intent propertyAnimationIntent = new Intent(this, PropertyAnimation.class);
                 startActivity(propertyAnimationIntent);
+            case R.id.scrollby_test_item:
+                Intent scrollByTestIntent = new Intent(this, TestScrollByAndScrollTo.class);
+                startActivity(scrollByTestIntent);
+                break;
+            case R.id.touch_event_item:
+                Intent touchEventIntent = new Intent(this, TouchEventActivity.class);
+                startActivity(touchEventIntent);
+                break;
+            case R.id.dispatch_item:
+                Intent dispatchIntent = new Intent(this, DispatchActivity.class);
+                startActivity(dispatchIntent);
+                break;
+            case R.id.wave_full_item:
+                Intent waveFullIntent = new Intent(this, WaveFullItem.class);
+                startActivity(waveFullIntent);
+                break;
+           case R.id.hk_item:
+                Intent hkIntent = new Intent(this, HK.class);
+                startActivity(hkIntent);
                 break;
             default:
                 break;

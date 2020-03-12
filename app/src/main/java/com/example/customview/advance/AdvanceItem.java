@@ -239,7 +239,7 @@ public class AdvanceItem extends AppCompatActivity {
 
                         case MotionEvent.ACTION_MOVE:   //手指滑动
                             break;
-                        case MotionEvent.ACTION_CANCEL:   // 时间取消；手指滑动时 不会触发 UP 而是触发 Cancel
+                        case MotionEvent.ACTION_CANCEL:   // 事件取消；手指滑动时 不会触发 UP 而是触发 Cancel
                             break;
                         case MotionEvent.ACTION_UP:     //手指离开
                             mHandler.removeCallbacksAndMessages(null);
@@ -266,7 +266,7 @@ public class AdvanceItem extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     /**
-                     * position 必须取模 ，不然就回 越界
+                     * position 必须取模 ，不然就会 越界
                      */
                     int position = (int) v.getTag() % mImageViewList.size();
                     String imageDescriptionText = imageDescriptions[position];

@@ -26,7 +26,7 @@ public class MyScroll {
     /**
      * 回弹的总共时间 500 毫秒
      */
-    private long totalTime = 500;
+    private long totalTime = 250;
 
     /**
      * 是否移动完成；true 表示移动完成
@@ -70,7 +70,7 @@ public class MyScroll {
 
         if (passTime < totalTime) {
             //正在移动;     计算平均 速度 和 一小段距离
-//            float averageVelocity = distanceX / totalTime;
+            //float averageVelocity = distanceX / totalTime;
             float averageDistance = passTime * distanceX / totalTime;
 
             currentX = averageDistance + startX;

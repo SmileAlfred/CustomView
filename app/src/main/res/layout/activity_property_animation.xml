@@ -4,6 +4,20 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="注：测试视图动画和属性动画\n
+\t\t\t\t视图动画移动后，原位置被点击还会有响应\n
+\t\t\t\t属性动画移动后，属性也随之移动"
+        android:textColor="#000"
+        android:textSize="18sp"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -18,12 +18,21 @@ import com.example.customview.util.DensityUtil;
  * 重点：※ ※ ※ ※ 学会 事件传递 事件拦截
  * @date :2020/03/02 9:39
  */
+
+/**
+ * 定义接口<以点击事件为例>
+ * 1. 定义接口： public interface OnClickListener{void onClick();...} → 当监听的事件发生时 回调 .onClick() 方法
+ * 2. 让使用者 传递接口的 实力进来 public void setOnclickListener(OnClickListener l){...}
+ * 3. 调用方法：li.mOnClickListener.onClick(this)
+ * 4. 用户使用：view.setOnclickListener(new View.OnclickListener(){...}
+ * 5. 回调，实现 重写的 OnClick()
+ */
 public class MyViewPager extends ViewGroup {
     /**
      * 手势识别器
      * 1.定义出来
      * 2.<在 构造器 方法中> 实例化-把想要的方法给重写
-     * 3.在onTouchEvent()把事件传递给手势识别器
+     * 3.在onTouchEvent()把事件传递给手势识别器;它无法拦截事件，只是操作
      */
     private GestureDetector mGestureDetector;
 
@@ -95,7 +104,8 @@ public class MyViewPager extends ViewGroup {
 
     /**
      * 触摸事件存在 BUG ，scrollView 只可以上下滑 而没有实现 左右滑，
-     * 在这里 进行  <拦截>  解决。如果当前方法 返回 true；拦截事件将会触发当前控件的 onTouchEvent() 方法
+     * 在这里 进行  <拦截>  解决。→ 是否拦截 事件传递给孩子
+     * 如果当前方法 返回 true；拦截事件将会触发当前控件的 onTouchEvent() 方法
      * 如果当前方法 返回 false；事件继续传递给 孩子。
      * × 这里返回 true 以后，scrollView 可以左右滑动 ，但又不可以上下滑动了。
      * 解决：监听 滑动距离，上下多就返回 false，继续响应滑动；左右滑动多，就返回 true。
@@ -105,7 +115,13 @@ public class MyViewPager extends ViewGroup {
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        mGestureDetector.onTouchEvent(ev);  //解决 上下滑动后再左右滑时，出现的BUG<时间冲突问题>；
+        /**
+         * BUG：当 上下滚动时，拦截了左右滑动事件，不up直接左右滑，
+         * 导致 .onTouchEvent() 手势识别器直接执行的是 DOWN ，并未执行 DOWN ，
+         * 结果就是，手势识别器检测到的X轴数据猛增，出现指针闪动
+         * 解决：在拦截事件中 也使用 手势识别器；不论是否拦截，都会将手势的移动及时传给手势识别器
+         */
+        mGestureDetector.onTouchEvent(ev);
         boolean result = false; //默认把结果传递给 孩子
 
         switch (ev.getAction()) {
@@ -125,7 +141,7 @@ public class MyViewPager extends ViewGroup {
 
                 if (distanceX > distanceY && distanceX > 5.0) {
                     result = true;
-                }else {
+                } else {
                     scrollToPager(mCurrentIndex);
                 }
                 break;
@@ -200,7 +216,9 @@ public class MyViewPager extends ViewGroup {
         //scrollTo(mCurrentIndex * getWidth(), getScrollY());             //瞬间移动到 指定位置；生硬
         //scroller.startScroll(getScrollX(), getScrollY(), distanceX, 0); //缓慢移动，但是 没有 时长 限制
         scroller.startScroll(getScrollX(), getScrollY(), distanceX, 0, Math.abs(distanceX));
-
+        /**
+         * 滚动后 立刻刷新
+         */
         invalidate();   //调用  .onDraw() 和 .computeScroll() 方法执行
     }
 
@@ -220,7 +238,7 @@ public class MyViewPager extends ViewGroup {
         /**
          * 当页面改变的时候  回调本方法， 并将当前 页面的下标  回传
          *
-         * @param position  当前页面的下标
+         * @param position 当前页面的下标
          */
         void scrollToPager(int position);
     }
@@ -238,7 +256,7 @@ public class MyViewPager extends ViewGroup {
 
     /**
      * 测量的时候 测量多次，
-     * .onMesaure()总结
+     * .onMeasure()总结
      *  系统的onMesaure中所干的事：
      *  1、根据 widthMeasureSpec 求得宽度width，和父view给的模式
      *  2、根据自身的宽度width 和自身的padding 值，相减，求得子view可以拥有的宽度newWidth

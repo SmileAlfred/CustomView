@@ -123,6 +123,9 @@ public class IndexView extends View {
                 float Y = event.getY();
                 int index = (int) (Y / itemHeight);   // 字母索引
 
+                /**
+                 * 判断一下，当  index  不等于 touchIndex 时，变色
+                 */
                 if (index != touchIndex) {
                     touchIndex = index;
                     invalidate();

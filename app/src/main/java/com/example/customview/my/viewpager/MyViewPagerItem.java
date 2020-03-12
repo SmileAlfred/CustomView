@@ -14,7 +14,7 @@ import com.example.customview.R;
 
 /**
  * @author LiuSaiSai
- * @description: 自定义 防 ViewPager 项目；ViewPager 需要 adapter ；本方法不用
+ * @description: 自定义 防 ViewPager 项目；<ViewPager 需要 adapter> ；本方法不用
  * @date :2020/03/02 9:46
  */
 public class MyViewPagerItem extends AppCompatActivity {
@@ -60,14 +60,14 @@ public class MyViewPagerItem extends AppCompatActivity {
         }
 
         /**
-         * 添加 测试 页面 ;出现BUG，为什么？
+         * 添加 测试 页面 ;出现 白屏 BUG，为什么？
          * 因为 View 类中 没有 测量 .onMeasure()
          */
         View testView = View.inflate(this, R.layout.activity_test_my_view_pager, null);
         mMyViewPager.addView(testView, 2);
 
         /**
-         *  设置 RadioGroup 选中 状态的变化
+         *  设置 RadioGroup 选中 状态的变化； → 当点击 点 的时候，切换页面
          */
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             /**
@@ -87,6 +87,9 @@ public class MyViewPagerItem extends AppCompatActivity {
         mMyViewPager.setOnPagerChangedListener(new MyViewPager.OnPagerChangedListener() {
             @Override
             public void scrollToPager(int position) {
+                /**
+                 * 选中哪个位置的点
+                 */
                 mRadioGroup.check(position);
             }
         });
