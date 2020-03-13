@@ -1,4 +1,4 @@
-package com.example.customview.test;
+package com.example.customview.hktech;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,6 +9,8 @@ import android.graphics.Paint.Style;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.customview.util.DensityUtil;
 
 public class HkText extends View {
 
@@ -27,7 +29,7 @@ public class HkText extends View {
 	/**
 	 * 像素值
 	 */
-	private int textSize = 60;
+	private int textSize = DensityUtil.dip2px(getContext(),20);
 
 	private void init() {
 		paint = new Paint();
@@ -96,7 +98,7 @@ public class HkText extends View {
 
 		}
 		seed = (seed + 1) % stepCount;
-		handler.sendEmptyMessageDelayed(seed, 500);
+		handler.sendEmptyMessageDelayed(seed, 50);
 	}
 
 

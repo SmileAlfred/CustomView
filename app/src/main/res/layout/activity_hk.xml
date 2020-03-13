@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".test.HK" >
+    tools:context=".hktech.HK" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Hello_world"
-        android:textColor="@android:color/white" />
+        android:text="HK"
+        android:textColor="#000" />
 
-    <com.example.customview.test.HkTextGroup
+    <com.example.customview.hktech.HkTextGroup
         android:id="@+id/hk_text"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_dark" />
 

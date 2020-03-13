@@ -35,10 +35,6 @@ public class SlideLayout extends FrameLayout {
      */
     private Scroller mScroller;
 
-    /**
-     * 解决 删除 某一 item后，下一个 item自动打开 的BUG
-     */
-    private boolean isOpen = true;
 
     public SlideLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -86,9 +82,6 @@ public class SlideLayout extends FrameLayout {
         super.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (isOpen) {
-                    closeMenu();
-                }
                 //1. 按下记录坐标
                 downX = startX = event.getX();
                 downY = startY = event.getY();
@@ -100,6 +93,9 @@ public class SlideLayout extends FrameLayout {
                 //3. 计算偏移量
                 float distanceX = endX - startX;
 
+                /**
+                 * content 和 menu 同时移动；注意 toScrollX 的值
+                 */
                 int toScrollX = (int) (getScrollX() - distanceX);
 
                 if (toScrollX < 0) {
@@ -112,18 +108,20 @@ public class SlideLayout extends FrameLayout {
 
                 startX = event.getX();
                 startY = event.getY();
-
+                /**
+                 * 真正滑动的距离！
+                 */
                 float DX = Math.abs(endX - downX);
                 float DY = Math.abs(endY - downY);
 
-                if (DX > DY && DX > 8) {
+                if (DX > DY && DX > 5) {
                     //响应 左右滑动，反拦截事件； 响应 slideLayout;
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 break;
             case MotionEvent.ACTION_UP:
                 int totalScrollX = getScrollX();    //偏移量
-                if (totalScrollX < menuWidth / 4) {
+                if (totalScrollX < menuWidth / 3) {
                     //关闭 menu
                     closeMenu();
                 } else {
@@ -137,21 +135,18 @@ public class SlideLayout extends FrameLayout {
     }
 
     /**
-     * 返回 true 拦截孩子的 事件；但会 执行 当前控件的 onTouchEvent() 方法
+     * 返回 true 拦截孩子<点击>的 事件；但会 执行 当前控件的 onTouchEvent()<滑动> 方法
      * 返回 false 不拦截 孩子的事件，事件继续 传递
-     *
+     * 解决 点击事件和 滑动事件的 冲突
      * @param ev
      * @return
      */
-    @Override
+  @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (isOpen) {
-            closeMenu();
-        }
+
         boolean intercept = false;
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
                 //1. 按下记录坐标
                 downX = startX = ev.getX();
 
@@ -162,7 +157,6 @@ public class SlideLayout extends FrameLayout {
             case MotionEvent.ACTION_MOVE:
                 //2. 记录结束值
                 float endX = ev.getX();
-                float endY = ev.getY();
                 //3. 计算偏移量
                 float distanceX = endX - startX;
 
@@ -170,7 +164,7 @@ public class SlideLayout extends FrameLayout {
 
                 float DX = Math.abs(endX - downX);
 
-                if (DX > 8) {
+                if (DX > 5) {
                     intercept = true;
                 } else {
                     intercept = false;
@@ -190,7 +184,6 @@ public class SlideLayout extends FrameLayout {
         if (onStateChangeListener != null) {
             onStateChangeListener.onOpen(this);
         }
-        isOpen = true;
         invalidate();
     }
 
@@ -200,7 +193,6 @@ public class SlideLayout extends FrameLayout {
         if (onStateChangeListener != null) {
             onStateChangeListener.onClose(this);
         }
-        isOpen = false;
         invalidate();
     }
 

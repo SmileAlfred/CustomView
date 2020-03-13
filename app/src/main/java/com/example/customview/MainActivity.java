@@ -17,7 +17,7 @@ import com.example.customview.property.animation.PropertyAnimation;
 import com.example.customview.quick.index.QuickIndexItem;
 import com.example.customview.scrollbyandscrollto.TestScrollByAndScrollTo;
 import com.example.customview.slide.SlideMenuItem;
-import com.example.customview.test.HK;
+import com.example.customview.hktech.HK;
 import com.example.customview.touch_eventtest.TouchEventActivity;
 import com.example.customview.wave.WaveItem;
 import com.example.customview.wave_full.WaveFullItem;

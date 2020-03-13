@@ -33,7 +33,11 @@ public class WaveView extends View {
         mpaint = new Paint();
         mpaint.setColor(Color.RED);
         mpaint.setAntiAlias(true);
-        mpaint.setStyle(Paint.Style.STROKE);    //圆环
+        /**
+         * .Style.STROKE 设置圆环效果；
+         * .setStrokeWidth() 设置圆环边边
+         */
+        mpaint.setStyle(Paint.Style.STROKE);
         mpaint.setStrokeWidth(radium / 3);
 
         invalidate();
@@ -45,7 +49,9 @@ public class WaveView extends View {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             radium += 5;
-
+            /**
+             * 设置 透明度；
+             */
             int alpha = mpaint.getAlpha();
             alpha -= 5;
             if (alpha < 0) {

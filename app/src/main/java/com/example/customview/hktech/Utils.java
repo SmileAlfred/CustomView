@@ -1,4 +1,4 @@
-package com.example.customview.test;
+package com.example.customview.hktech;
 
 import android.util.Log;
 

@@ -4,7 +4,7 @@
     android:layout_height="60dp"
     android:orientation="horizontal">
 
-    <TextView
+    <Button
         android:id="@+id/to_top_slide_menu"
         android:layout_width="90dp"
         android:layout_height="60dp"
@@ -14,7 +14,9 @@
         android:textColor="#fff"
         android:textSize="16sp" />
 
-    <TextView
+
+
+    <Button
         android:id="@+id/unread_slide_menu"
         android:layout_width="90dp"
         android:layout_height="60dp"
@@ -24,7 +26,7 @@
         android:textColor="#fff"
         android:textSize="16sp" />
 
-    <TextView
+    <Button
         android:id="@+id/delete_slide_menu"
         android:layout_width="90dp"
         android:layout_height="60dp"

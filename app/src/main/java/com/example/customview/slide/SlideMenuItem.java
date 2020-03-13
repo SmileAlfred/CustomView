@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,11 +23,12 @@ import java.util.List;
  * @author LiuSaiSai
  * @description: 自定义 侧滑菜单
  * × × × × × × × 注意 .getView() 方法中，一定要用 参数的 view.findViewById();    不可以 直接 findViewById()
+ * ？？？如何实现 置顶未读和删除 的点击事件呢？
  * @date :2020/03/04 17:35
  */
 public class SlideMenuItem extends AppCompatActivity {
 
-    private ListView mListViewiew;
+    private ListView mListView;
 
     private List<Person4QuickIndex> mList;
 
@@ -38,9 +40,8 @@ public class SlideMenuItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_menu_item);
-//        setContentView(R.activity_main.activity_item_slide);
 
-        mListViewiew = findViewById(R.id.list_view_slide_menu);
+        mListView = findViewById(R.id.list_view_slide_menu);
         /**
          * 设置适配器
          * 准备数据
@@ -79,7 +80,7 @@ public class SlideMenuItem extends AppCompatActivity {
         }
 
         adapter = new MyAdapter();
-        mListViewiew.setAdapter(adapter);
+        mListView.setAdapter(adapter);
     }
 
 
@@ -116,7 +117,6 @@ public class SlideMenuItem extends AppCompatActivity {
             //根据 位置得到内容
             final Person4QuickIndex person = mList.get(position);
 
-            final TextView selectedTextView = mViewHolder.itemContent;
             mViewHolder.itemContent.setText(person.getName());
 
             mViewHolder.itemContent.setOnClickListener(new View.OnClickListener() {
@@ -126,37 +126,39 @@ public class SlideMenuItem extends AppCompatActivity {
                 }
             });
 
-            TextView toTop = mViewHolder.itemMenu.findViewById(R.id.to_top_slide_menu);
-            TextView unRead = mViewHolder.itemMenu.findViewById(R.id.unread_slide_menu);
-            TextView delete = mViewHolder.itemMenu.findViewById(R.id.delete_slide_menu);
-
-            toTop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mList.add(0, person);
-                    mList.remove(position + 1);
-                    mListViewiew.getChildAt(0).setBackgroundColor(Color.YELLOW);
-                    notifyDataSetChanged();
-                }
-            });
-            unRead.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedTextView.setTextColor(Color.RED);
-                    notifyDataSetChanged();     //必须要刷新
-                }
-            });
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mList.remove(person);
-                    notifyDataSetChanged();
-                }
-            });
-
-            SlideLayout SlideLayout = (SlideLayout) convertView;
+            final SlideLayout slideLayout = (SlideLayout) convertView;
             mOnStateChangeListener = new MyOnStateChangeListener();
-            SlideLayout.setOnStateChangeListener(mOnStateChangeListener);
+             slideLayout.setOnStateChangeListener(mOnStateChangeListener);
+            /**
+             * 给策划菜单设置点击事件:绝不能写在 getView里面；也不能写在监听器的实现类中！
+             * 怎么实现呢？可以使用 mList 操作数据，但是绝不能用 listView 操作
+             * 0 置顶
+             * 1 未读
+             * 2 删除
+             */
+            mViewHolder.itemMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mList.add(0, mList.get(position));
+                    mList.remove(position + 1);
+                    notifyDataSetChanged();
+                }
+            });
+            mViewHolder.itemMenu.getChildAt(1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mList.get(position).setName( mList.get(position).getName() + "未读");
+                    notifyDataSetChanged();
+                }
+            });
+
+            mViewHolder.itemMenu.getChildAt(2).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mList.remove(mList.get(position));
+                    notifyDataSetChanged();
+                }
+            });
             return convertView;
         }
     }
@@ -164,11 +166,18 @@ public class SlideMenuItem extends AppCompatActivity {
     private SlideLayout mSlideLayout;
     private MyOnStateChangeListener mOnStateChangeListener;
 
+    /**
+     * 解决 删除 某一 item后，下一个 item自动打开 的BUG
+     */
     class MyOnStateChangeListener implements SlideLayout.OnStateChangeListener {
-
+        /**
+         * 如果关闭的 menu 就是 就是刚才的那个 menu，那么 释放资源
+         *
+         * @param layout
+         */
         @Override
         public void onClose(SlideLayout layout) {
-            if (mSlideLayout != layout) {
+            if (mSlideLayout == layout) {
                 mSlideLayout = null;
             }
         }
@@ -180,6 +189,11 @@ public class SlideMenuItem extends AppCompatActivity {
             }
         }
 
+        /**
+         * 当 打开了 menu 的时候，要记录是哪一个item
+         *
+         * @param layout
+         */
         @Override
         public void onOpen(SlideLayout layout) {
             mSlideLayout = layout;
@@ -191,3 +205,4 @@ public class SlideMenuItem extends AppCompatActivity {
         LinearLayout itemMenu;
     }
 }
+

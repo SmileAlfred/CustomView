@@ -1,4 +1,4 @@
-package com.example.customview.test;
+package com.example.customview.hktech;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -29,7 +29,7 @@ public class HkTextGroup extends View {
 	/**
 	 * 像素值
 	 */
-	private int textSize = 80;
+	private int textSize = 30;
 
 	private void init() {
 		paint = new Paint();
@@ -104,10 +104,10 @@ public class HkTextGroup extends View {
 	private int stepCount = 11;
 
 	/** 行 */
-	private int row = 20;
+	private int row = 100;
 
 	/** 列 */
-	private int list = 20;
+	private int list = 100;
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -116,7 +116,7 @@ public class HkTextGroup extends View {
 			for (int i = 0; i < row; i++) {
 				Cell cell = cells[j][i];
 				// 小机率事件，改变内容
-				if (Math.random() * 100 > 5) {
+				if (Math.random() * 100 > 85) {
 					cell.msg = ""
 							+ counts[(int) (Math.random() * counts.length)];
 				}
