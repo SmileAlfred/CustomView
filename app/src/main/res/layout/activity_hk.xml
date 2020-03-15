@@ -10,12 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="HK"
-        android:textColor="#000" />
+        android:textColor="@android:color/white" />
 
     <com.example.customview.hktech.HkTextGroup
         android:id="@+id/hk_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_dark" />
 

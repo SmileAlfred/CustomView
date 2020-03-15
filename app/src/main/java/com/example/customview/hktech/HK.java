@@ -1,19 +1,25 @@
 package com.example.customview.hktech;
 
-import android.app.Activity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.customview.R;
 
 /**
- * 黑客效果；来自于 尚硅谷自定义控件教程\源码及课件\day3\02_代码\CustomView2\atGuiguEmpire
- * 没有实现效果，
+ *
+ *  BUG 存在于 HkTextGroup.class 测量方法中，getWidth() 返回值得到的是 0 .
+ *  解决方法：将getWidth()  换成 getMeasuredWidth()
+ *
  */
-public class HK extends Activity {
+
+public class HK extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hk);
     }
+
+    
 }

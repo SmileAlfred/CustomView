@@ -10,8 +10,6 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.customview.util.DensityUtil;
-
 public class HkText extends View {
 
 	private char[] counts = new char[]{'A','B','C','D','E','F','G','H','J','K','L','M','N','O'};
@@ -29,7 +27,7 @@ public class HkText extends View {
 	/**
 	 * 像素值
 	 */
-	private int textSize = DensityUtil.dip2px(getContext(),20);
+	private int textSize = 20;
 
 	private void init() {
 		paint = new Paint();
@@ -98,7 +96,7 @@ public class HkText extends View {
 
 		}
 		seed = (seed + 1) % stepCount;
-		handler.sendEmptyMessageDelayed(seed, 50);
+		handler.sendEmptyMessageDelayed(seed, 500);
 	}
 
 

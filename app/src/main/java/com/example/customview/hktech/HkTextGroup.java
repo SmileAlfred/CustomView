@@ -10,6 +10,12 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.customview.util.DensityUtil;
+
+/**
+ * BUG 存在于 测量方法中，getWidth() 返回值得到的是 0 .
+ * 解决方法：将getWidth()  换成 getMeasuredWidth()
+ */
 public class HkTextGroup extends View {
 
 	private char[] counts = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G',
@@ -29,7 +35,7 @@ public class HkTextGroup extends View {
 	/**
 	 * 像素值
 	 */
-	private int textSize = 30;
+	private int textSize = DensityUtil.dip2px(getContext(),20);
 
 	private void init() {
 		paint = new Paint();
@@ -53,11 +59,11 @@ public class HkTextGroup extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		Utils.logleo("getWidth()::" + getWidth());
-		Utils.logleo("getHeight()::" + getHeight());
+		Utils.logleo("getWidth()::" + getMeasuredWidth());
+		Utils.logleo("getHeight()::" + getMeasuredHeight());
 
-		textSize = getWidth() / 10;
-		left_bottom = getHeight();
+		textSize = getMeasuredWidth() / 10;
+		left_bottom = getMeasuredHeight();
 	}
 
 	public float left;
@@ -104,10 +110,10 @@ public class HkTextGroup extends View {
 	private int stepCount = 11;
 
 	/** 行 */
-	private int row = 100;
+	private int row = 60;
 
 	/** 列 */
-	private int list = 100;
+	private int list = 120;
 
 	@Override
 	protected void onDraw(Canvas canvas) {
