@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        findViews();
+
+    }
+
+    private void findViews() {
         setContentView(R.layout.activity_main);
 
         Button youkuMenu = findViewById(R.id.youku_menu);
