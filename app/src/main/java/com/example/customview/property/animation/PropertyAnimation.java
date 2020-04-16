@@ -5,7 +5,9 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,8 @@ import com.example.customview.R;
 public class PropertyAnimation extends AppCompatActivity {
 
     private ImageView iv_animation;
+    private TextView mNoteText;
+    private Button mNoteButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,19 @@ public class PropertyAnimation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "点击了图片", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mNoteText = findViewById(R.id.property_note);
+        mNoteButton = findViewById(R.id.title_edit_button);
+        mNoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mNoteText.getVisibility() == View.GONE){
+                    mNoteText.setVisibility(View.VISIBLE);
+                }else {
+                    mNoteText.setVisibility(View.GONE);
+                }
             }
         });
     }

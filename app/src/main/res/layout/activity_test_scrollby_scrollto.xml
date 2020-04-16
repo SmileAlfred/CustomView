@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:id="@+id/scrollby_note"
+        android:visibility="gone"
         android:padding="8dp"
         android:text="注：测试ScrollBy和ScrollTo\n
 \t\t\t\t.ScrollBy()参数为距离\n
@@ -30,28 +32,28 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="scrollLeft"
-            android:text="左移scrollBy(10, 0)" />
+            android:text="左移scrollBy(100, 0)" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="scrollRight"
-            android:text="右移scrollBy(-10, 0)" />
+            android:text="右移scrollBy(-100, 0)" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="scrollUp"
-            android:text="上移scrollBy(0, 10)" />
+            android:text="上移scrollBy(0, 100)" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="scrollDown"
-            android:text="下移scrollBy(0, -10)" />
+            android:text="下移scrollBy(0, -100)" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,8 +79,8 @@
     <com.example.customview.scrollbyandscrollto.ScrollTestView
         android:layout_marginTop="20dp"
         android:id="@+id/iv_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:background="#ff0000"
         android:src="@drawable/ic_launcher" />
 

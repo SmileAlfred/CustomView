@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.customview.R;
 
@@ -42,6 +44,8 @@ import com.example.customview.R;
 public class TestScrollByAndScrollTo extends Activity {
 
 	ScrollTestView iv_main;
+	private TextView mScrollbyNote;
+	private Button editButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +53,38 @@ public class TestScrollByAndScrollTo extends Activity {
 		setContentView(R.layout.activity_test_scrollby_scrollto);
 
 		iv_main = (ScrollTestView) findViewById(R.id.iv_main);
+
+		mScrollbyNote = findViewById(R.id.scrollby_note);
+		editButton = findViewById(R.id.title_edit_button);
+		editButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(mScrollbyNote.getVisibility() == View.GONE){
+					mScrollbyNote.setVisibility(View.VISIBLE);
+				}else {
+					mScrollbyNote.setVisibility(View.GONE);
+				}
+			}
+		});
 	}
 
 	public void scrollLeft(View v) {
-		iv_main.scrollBy(10, 0);
+		iv_main.scrollBy(100, 0);
 		Log.e("TAG", iv_main.getScrollX() + "-");
 	}
 
 	public void scrollRight(View v) {
-		iv_main.scrollBy(-10, 0);
+		iv_main.scrollBy(-100, 0);
 		Log.e("TAG", iv_main.getScrollX() + "-");
 	}
 
 	public void scrollUp(View v) {
-		iv_main.scrollBy(0, 10);
+		iv_main.scrollBy(0, 100);
 		Log.e("TAG", iv_main.getScrollX() + "-");
 	}
 
 	public void scrollDown(View v) {
-		iv_main.scrollBy(0, -10);
+		iv_main.scrollBy(0, -100);
 		Log.e("TAG", iv_main.getScrollX() + "-");
 	}
 

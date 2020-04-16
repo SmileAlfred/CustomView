@@ -77,68 +77,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent = null;
         switch (v.getId()) {
             case R.id.youku_menu:
-                Intent YoukuMenuIntent = new Intent(this, YoukuMenu.class);
-                startActivity(YoukuMenuIntent);
+                intent = new Intent(this, YoukuMenu.class);
                 break;
             case R.id.viewpager_item:
-                Intent AdvanceItemIntent = new Intent(this, AdvanceItem.class);
-                startActivity(AdvanceItemIntent);
+                intent = new Intent(this, AdvanceItem.class);
                 break;
             case R.id.popup_windows_item:
-                Intent PopupWindowsIntent = new Intent(this, PopupWindowsItem.class);
-                startActivity(PopupWindowsIntent);
+                intent= new Intent(this, PopupWindowsItem.class);
                 break;
             case R.id.toggle_button_item:
-                Intent MyToggleButtonIntent = new Intent(this, MyToggleButtonItem.class);
-                startActivity(MyToggleButtonIntent);
+                intent = new Intent(this, MyToggleButtonItem.class);
                 break;
             case R.id.auto_attribute_item:
-                Intent PropertyItemIntent = new Intent(this, AutoAttributeItem.class);
-                startActivity(PropertyItemIntent);
+                intent = new Intent(this, AutoAttributeItem.class);
                 break;
             case R.id.my_view_pager_item:
-                Intent MyViewPagertemIntent = new Intent(this, MyViewPagerItem.class);
-                startActivity(MyViewPagertemIntent);
+                intent = new Intent(this, MyViewPagerItem.class);
                 break;
             case R.id.quick_index_item:
-                Intent quickIndexIntent = new Intent(this, QuickIndexItem.class);
-                startActivity(quickIndexIntent);
+                intent= new Intent(this, QuickIndexItem.class);
                 break;
             case R.id.slide_menu_item:
-                Intent slideMenuIntent = new Intent(this, SlideMenuItem.class);
-                startActivity(slideMenuIntent);
+                intent = new Intent(this, SlideMenuItem.class);
                 break;
             case R.id.wave_item:
-                Intent waveIntent = new Intent(this, WaveItem.class);
-                startActivity(waveIntent);
+                intent= new Intent(this, WaveItem.class);
                 break;
             case R.id.property_animation_item:
-                Intent propertyAnimationIntent = new Intent(this, PropertyAnimation.class);
-                startActivity(propertyAnimationIntent);
+                intent = new Intent(this, PropertyAnimation.class);
+                break;
             case R.id.scrollby_test_item:
-                Intent scrollByTestIntent = new Intent(this, TestScrollByAndScrollTo.class);
-                startActivity(scrollByTestIntent);
+                intent= new Intent(this, TestScrollByAndScrollTo.class);
                 break;
             case R.id.touch_event_item:
-                Intent touchEventIntent = new Intent(this, TouchEventActivity.class);
-                startActivity(touchEventIntent);
+                intent= new Intent(this, TouchEventActivity.class);
                 break;
             case R.id.dispatch_item:
-                Intent dispatchIntent = new Intent(this, DispatchActivity.class);
-                startActivity(dispatchIntent);
+                intent = new Intent(this, DispatchActivity.class);
                 break;
             case R.id.wave_full_item:
-                Intent waveFullIntent = new Intent(this, WaveFullItem.class);
-                startActivity(waveFullIntent);
+                intent = new Intent(this, WaveFullItem.class);
                 break;
            case R.id.hk_item:
-                Intent hkIntent = new Intent(this, HK.class);
-                startActivity(hkIntent);
+               intent= new Intent(this, HK.class);
                 break;
             default:
                 break;
         }
+        startActivity(intent);
     }
 }
