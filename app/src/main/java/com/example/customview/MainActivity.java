@@ -12,6 +12,7 @@ import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
 import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.hktech.HK;
+import com.example.customview.loading.Loading;
 import com.example.customview.my.viewpager.MyViewPagerItem;
 import com.example.customview.popup.windows.PopupWindowsItem;
 import com.example.customview.property.animation.PropertyAnimation;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button DispatchItem = findViewById(R.id.dispatch_item);
         Button WaveFullItem = findViewById(R.id.wave_full_item);
         Button HKItem = findViewById(R.id.hk_item);
+        Button LoadingItem = findViewById(R.id.loading_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DispatchItem.setOnClickListener(this);
         WaveFullItem.setOnClickListener(this);
         HKItem.setOnClickListener(this);
+        LoadingItem.setOnClickListener(this);
     }
 
     @Override
@@ -123,6 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.hk_item:
                intent= new Intent(this, HK.class);
+                break;
+           case R.id.loading_item:
+               intent= new Intent(this, Loading.class);
                 break;
             default:
                 break;

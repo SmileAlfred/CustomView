@@ -192,7 +192,6 @@ public class AdvanceItem extends AppCompatActivity {
                 mHandler.sendEmptyMessageDelayed(0, 4000);
             }
         }
-
     }
 
     /**

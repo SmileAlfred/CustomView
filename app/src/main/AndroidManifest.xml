@@ -31,6 +31,7 @@
         <activity android:name=".dispatch.DispatchActivity" />
         <activity android:name=".wave_full.WaveFullItem" />
         <activity android:name=".hktech.HK" />
+        <activity android:name=".loading.Loading" />
     </application>
 
 </manifest>
