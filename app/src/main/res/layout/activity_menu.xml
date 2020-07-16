@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+
+
+        <ImageView
+            android:id="@+id/iv_item1"
+            style="@style/item_button_style"
+            android:background="@drawable/channel4" />
+
+        <ImageView
+            android:id="@+id/iv_item2"
+            style="@style/item_button_style"
+            android:background="@drawable/channel7" />
+
+        <ImageView
+            android:id="@+id/iv_item3"
+            style="@style/item_button_style"
+            android:background="@drawable/channel1" />
+
+        <ImageView
+            android:id="@+id/iv_item4"
+            style="@style/item_button_style"
+            android:background="@drawable/channel3" />
+
+        <ImageView
+            android:id="@+id/iv_item5"
+            style="@style/item_button_style"
+            android:background="@drawable/channel2" />
+        <ImageView
+            android:id="@+id/iv_menu"
+            style="@style/munu_button_style"
+            android:background="@drawable/icon_home" />
+    </FrameLayout>
+</LinearLayout>

@@ -22,6 +22,7 @@ import com.example.customview.slide.SlideMenuItem;
 import com.example.customview.touch_eventtest.TouchEventActivity;
 import com.example.customview.wave.WaveItem;
 import com.example.customview.wave_full.WaveFullItem;
+import com.example.customview.youku.menu.MenuActivity;
 import com.example.customview.youku.menu.YoukuMenu;
 
 /**
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button WaveFullItem = findViewById(R.id.wave_full_item);
         Button HKItem = findViewById(R.id.hk_item);
         Button LoadingItem = findViewById(R.id.loading_item);
+        Button btn_menu_item = findViewById(R.id.btn_menu_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         WaveFullItem.setOnClickListener(this);
         HKItem.setOnClickListener(this);
         LoadingItem.setOnClickListener(this);
+        btn_menu_item.setOnClickListener(this);
     }
 
     @Override
@@ -129,6 +132,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.loading_item:
                intent= new Intent(this, Loading.class);
+                break;
+           case R.id.btn_menu_item:
+               intent= new Intent(this, MenuActivity.class);
                 break;
             default:
                 break;

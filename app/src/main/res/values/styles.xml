@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="munu_button_style">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <style name="item_button_style">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_gravity">center_horizontal|center_vertical</item>
+    </style>
+
 </resources>
