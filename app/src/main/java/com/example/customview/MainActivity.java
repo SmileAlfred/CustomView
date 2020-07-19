@@ -11,6 +11,7 @@ import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
 import com.example.customview.dispatch.DispatchActivity;
+import com.example.customview.dy_loading.DYLoadingActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.Loading;
 import com.example.customview.my.viewpager.MyViewPagerItem;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button HKItem = findViewById(R.id.hk_item);
         Button LoadingItem = findViewById(R.id.loading_item);
         Button btn_menu_item = findViewById(R.id.btn_menu_item);
+        Button btn_dy_loding_item = findViewById(R.id.btn_dy_loding_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         HKItem.setOnClickListener(this);
         LoadingItem.setOnClickListener(this);
         btn_menu_item.setOnClickListener(this);
+        btn_dy_loding_item.setOnClickListener(this);
     }
 
     @Override
@@ -135,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.btn_menu_item:
                intent= new Intent(this, MenuActivity.class);
+                break;
+           case R.id.btn_dy_loding_item:
+               intent= new Intent(this, DYLoadingActivity.class);
                 break;
             default:
                 break;

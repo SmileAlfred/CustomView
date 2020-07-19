@@ -2,7 +2,9 @@ package com.example.customview.loading;
 
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
+import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -35,6 +37,7 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
     private ImageView iv_loading_cust;
     private ImageView iv_parabola;
     private ImageView iv_parabola_object;
+    private ImageView iv_phone;
     private TextView tv_loading;
     private TextView tv_char_change;
     private Button btn_parabola;
@@ -62,6 +65,7 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
         iv_loading_cust = findViewById(R.id.iv_loading_cust);
         iv_parabola = findViewById(R.id.iv_parabola);
         iv_parabola_object = findViewById(R.id.iv_parabola_object);
+        iv_phone = findViewById(R.id.iv_phone);
         tv_loading = findViewById(R.id.tv_loading);
         tv_char_change = findViewById(R.id.tv_char_change);
         btn_parabola = findViewById(R.id.btn_parabola);
@@ -73,6 +77,30 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
         loadingTv();
 
         updateChar();
+
+        keyFrameTest();
+    }
+
+    //关键祯技术
+    private void keyFrameTest() {
+        Keyframe keyframe1 = Keyframe.ofFloat(0f, 0);
+        Keyframe keyframe2 = Keyframe.ofFloat(0.1f, -20f);
+        Keyframe keyframe3 = Keyframe.ofFloat(0.2f, 20f);
+        Keyframe keyframe4 = Keyframe.ofFloat(0.3f, -20f);
+        Keyframe keyframe5 = Keyframe.ofFloat(0.4f, 20f);
+        Keyframe keyframe6 = Keyframe.ofFloat(0.5f, -20f);
+        Keyframe keyframe7 = Keyframe.ofFloat(0.6f, 20f);
+        Keyframe keyframe8 = Keyframe.ofFloat(0.7f, -20f);
+        Keyframe keyframe9 = Keyframe.ofFloat(0.8f, 20f);
+        Keyframe keyframe10 = Keyframe.ofFloat(0.9f, -20f);
+        Keyframe keyframe11 = Keyframe.ofFloat(1f, 0f);
+
+        PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofKeyframe("rotation", keyframe1, keyframe2, keyframe3, keyframe4, keyframe5,
+                keyframe6, keyframe7, keyframe8, keyframe9, keyframe10, keyframe11);
+
+        Animator animator = ObjectAnimator.ofPropertyValuesHolder(iv_phone, propertyValuesHolder);
+        animator.setDuration(2000);
+        animator.start();
     }
 
     /**
@@ -102,7 +130,7 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
                         Point point = (Point) parabolaAinmator.getAnimatedValue();
-                        Log.i("TAG", "point.x: " + point.x + "point.y: " + point.y);
+                        //Log.i("TAG", "point.x: " + point.x + "point.y: " + point.y);
                         iv_parabola.layout(point.x, point.y,
                                 point.x + iv_parabola.getWidth(),
                                 point.y + iv_parabola.getHeight());
@@ -218,9 +246,12 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
         mValueAnimator.cancel();
         mColorValueAnimator.cancel();
         charAnimator.cancel();
-        parabolaAinmator.cancel();
-        objectAnimator.cancel();
-
+        if (parabolaAinmator != null) {
+            parabolaAinmator.cancel();
+        }
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+        }
         super.onStop();
     }
 

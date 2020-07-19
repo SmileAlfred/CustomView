@@ -74,7 +74,7 @@ public class LoadingImageView extends androidx.appcompat.widget.AppCompatImageVi
                 int i = curImgIndex % mImageCount + 1 ;
                 //通过文件名拿到对应的资源ID；当循环到第7张，7 % 7 = 0；没有匹配的图片。故统一向前加 1
                 int id = getResources().getIdentifier("channel" + i, "drawable", "com.example.customview");
-                Log.i("TAG", "image id is : " + id);
+                //Log.i("TAG", "image id is : " + id);
                 Drawable drawable = getResources().getDrawable(id);
                 setImageDrawable(drawable);
             }
