@@ -7,32 +7,31 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.drawable.Animatable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.example.customview.R;
-import com.example.customview.dy_loading.DYLoadingActivity;
 
 /**
  * @author LiuSaiSai
  * @date :2020/07/15 09:08
  * @description: 值动画的 ofObject
  */
-public class Loading extends AppCompatActivity implements View.OnClickListener {
+public class LoadingActvity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mIv_loading;
     private ImageView iv_loading_cust;
@@ -50,18 +49,52 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
     private ValueAnimator parabolaAinmator;
     private ObjectAnimator objectAnimator;
 
-    private int times = 1;
-    private int windowsWidth;
-    private int mediumX;
+    private int loadingTimes = 1;
 
+    private EditText et_search;
+    private ImageView iv_search_anim;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        windowsWidth = getWindowManager().getDefaultDisplay().getWidth();
-        mediumX = windowsWidth / 2;
 
+        findViews();
+        //加载中动画，图片上下位移并更换，文字更新；
+        loadingTv();
+        //从 A - Z 变化
+        updateChar();
+        //关键帧测试，电话震动动画
+        keyFrameTest();
+
+        //基于 SVG 的搜索动画
+        searchAnim();
+    }
+
+    private void searchAnim() {
+        //将焦点放在 ImageView 上
+        iv_search_anim.setFocusable(true);
+        iv_search_anim.setFocusableInTouchMode(true);
+        iv_search_anim.requestFocus();
+        iv_search_anim.requestFocusFromTouch();
+
+        //当 EditText 获得焦点时开始动画
+        et_search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    AnimatedVectorDrawableCompat animatedVectorDrawableCompat =
+                            AnimatedVectorDrawableCompat.create(LoadingActvity.this, R.drawable.animated_vecotr_search);
+
+                    iv_search_anim.setImageDrawable(animatedVectorDrawableCompat);
+
+                    ((Animatable) iv_search_anim.getDrawable()).start();
+                }
+            }
+        });
+    }
+
+    private void findViews() {
         mIv_loading = findViewById(R.id.iv_loading);
         iv_loading_cust = findViewById(R.id.iv_loading_cust);
         iv_parabola = findViewById(R.id.iv_parabola);
@@ -75,11 +108,8 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
         //旋转 imageView
         mIv_loading.setOnClickListener(this);
 
-        loadingTv();
-
-        updateChar();
-
-        keyFrameTest();
+        et_search = findViewById(R.id.edit);
+        iv_search_anim = findViewById(R.id.anim_img);
     }
 
     //关键祯技术
@@ -126,42 +156,52 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_parabola:
-                parabolaAinmator = ValueAnimator.ofObject(new ParabolaEvaluator(), new Point(100, 800), new Point(900, 800));
-                parabolaAinmator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        Point point = (Point) parabolaAinmator.getAnimatedValue();
-                        //Log.i("TAG", "point.x: " + point.x + "point.y: " + point.y);
-                        iv_parabola.layout(point.x, point.y,
-                                point.x + iv_parabola.getWidth(),
-                                point.y + iv_parabola.getHeight());
-                    }
-                });
-                parabolaAinmator.setDuration(2000);
-                parabolaAinmator.setRepeatCount(2);
-                parabolaAinmator.setRepeatMode(ValueAnimator.REVERSE);
-                parabolaAinmator.start();
-
-                objectAnimator = ObjectAnimator.ofObject(iv_parabola_object, "failPos", new ParabolaEvaluator(), new Point(200, 1000), new Point(800, 1000));
-                objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
-                objectAnimator.setDuration(2000);
-                objectAnimator.setRepeatCount(2);
-                objectAnimator.start();
+                //自定义运动轨迹，两个动画进行类似抛物线运动；
+                ParabolaDemo();
                 break;
             case R.id.iv_loading:
-                rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotateAnimation.setRepeatCount(Animation.INFINITE);
-                rotateAnimation.setDuration(500);
-                rotateAnimation.setInterpolator(new LinearInterpolator());
-
-                Float flo = 20.1f;
-                int i = flo.intValue();
-                mIv_loading.startAnimation(rotateAnimation);
-                Log.i("My Package Name ", "is : " + getPackageName());
+                //旋转动画，点击 iv 实现其旋转；
+                RotateIv();
                 break;
             default:
                 break;
         }
+    }
+
+    private void RotateIv() {
+        rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateAnimation.setRepeatCount(Animation.INFINITE);
+        rotateAnimation.setDuration(500);
+        rotateAnimation.setInterpolator(new LinearInterpolator());
+
+        Float flo = 20.1f;
+        int i = flo.intValue();
+        mIv_loading.startAnimation(rotateAnimation);
+        //Log.i("My Package Name ", "is : " + getPackageName());
+    }
+
+    private void ParabolaDemo() {
+        parabolaAinmator = ValueAnimator.ofObject(new ParabolaEvaluator(), new Point(100, 800), new Point(900, 800));
+        parabolaAinmator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Point point = (Point) parabolaAinmator.getAnimatedValue();
+                //Log.i("TAG", "point.x: " + point.x + "point.y: " + point.y);
+                iv_parabola.layout(point.x, point.y,
+                        point.x + iv_parabola.getWidth(),
+                        point.y + iv_parabola.getHeight());
+            }
+        });
+        parabolaAinmator.setDuration(2000);
+        parabolaAinmator.setRepeatCount(2);
+        parabolaAinmator.setRepeatMode(ValueAnimator.REVERSE);
+        parabolaAinmator.start();
+
+        objectAnimator = ObjectAnimator.ofObject(iv_parabola_object, "failPos", new ParabolaEvaluator(), new Point(200, 1000), new Point(800, 1000));
+        objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        objectAnimator.setDuration(2000);
+        objectAnimator.setRepeatCount(2);
+        objectAnimator.start();
     }
 
     private class CharEvaluator implements TypeEvaluator<Character> {
@@ -201,8 +241,8 @@ public class Loading extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-                times++;
-                switch (times % 4) {
+                loadingTimes++;
+                switch (loadingTimes % 4) {
                     case 2:
                         tv_loading.setText("加");
                         break;

@@ -13,7 +13,7 @@ import com.example.customview.button.MyToggleButtonItem;
 import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.dy_loading.DYLoadingActivity;
 import com.example.customview.hktech.HK;
-import com.example.customview.loading.Loading;
+import com.example.customview.loading.LoadingActvity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
 import com.example.customview.popup.windows.PopupWindowsItem;
 import com.example.customview.property.animation.PropertyAnimation;
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                intent= new Intent(this, HK.class);
                 break;
            case R.id.loading_item:
-               intent= new Intent(this, Loading.class);
+               intent= new Intent(this, LoadingActvity.class);
                 break;
            case R.id.btn_menu_item:
                intent= new Intent(this, MenuActivity.class);

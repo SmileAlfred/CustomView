@@ -35,7 +35,7 @@
         <activity android:name=".dispatch.DispatchActivity" />
         <activity android:name=".wave_full.WaveFullItem" />
         <activity android:name=".hktech.HK" />
-        <activity android:name=".loading.Loading" />
+        <activity android:name=".loading.LoadingActvity" />
         <activity android:name=".dy_loading.DYLoadingActivity" />
     </application>
 
