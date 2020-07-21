@@ -1,227 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#fff"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <com.example.customview.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:background="#fff"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_margin="18dp">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="#fff"
-            android:layout_weight="1"
-            android:orientation="vertical">
+        <com.example.customview.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/youku_menu"
+                style="@style/main_tv_style"
+                android:text="优酷菜单" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:background="#fff"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/viewpager_item"
+                style="@style/main_tv_style"
+                android:text="广告条" />
 
-                    <Button
-                        android:id="@+id/youku_menu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 优酷菜单" />
+            <TextView
+                android:id="@+id/popup_windows_item"
+                style="@style/main_tv_style"
+                android:text="下拉框" />
 
-                    <Button
-                        android:id="@+id/viewpager_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 广告条" />
+            <TextView
+                android:id="@+id/toggle_button_item"
+                style="@style/main_tv_style"
+                android:text="开关按钮" />
 
-                    <Button
-                        android:id="@+id/popup_windows_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 下拉框" />
+            <TextView
+                android:id="@+id/auto_attribute_item"
+                style="@style/main_tv_style"
+                android:text="自定义属性" />
 
-                    <Button
-                        android:id="@+id/toggle_button_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 开关按钮" />
+            <TextView
+                android:id="@+id/my_view_pager_item"
+                style="@style/main_tv_style"
+                android:text="仿ViewPager" />
 
-                    <Button
-                        android:id="@+id/auto_attribute_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 属性" />
+            <TextView
+                android:id="@+id/quick_index_item"
+                style="@style/main_tv_style"
+                android:text="联系人快速索引" />
 
-                    <Button
-                        android:id="@+id/my_view_pager_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 仿ViewPager" />
+            <TextView
+                android:id="@+id/slide_menu_item"
+                style="@style/main_tv_style"
+                android:text="侧滑菜单" />
 
-                    <Button
-                        android:id="@+id/quick_index_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 联系人快速索引" />
-
-                    <Button
-                        android:id="@+id/slide_menu_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 侧滑菜单" />
-
-                    <Button
-                        android:id="@+id/wave_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="自定义 水波纹" />
+            <TextView
+                android:id="@+id/wave_item"
+                style="@style/main_tv_style"
+                android:text="水波纹" />
 
 
-                </LinearLayout>
+            <TextView
+                android:id="@+id/property_animation_item"
+                style="@style/main_tv_style"
+                android:text="属性动画Test" />
 
-            </ScrollView>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/scrollby_test_item"
+                style="@style/main_tv_style"
+                android:text="ScrollByTest" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:background="#fff"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            <TextView
+                android:id="@+id/touch_event_item"
+                style="@style/main_tv_style"
+                android:text="拦截触摸事件Test" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/dispatch_item"
+                style="@style/main_tv_style"
+                android:text="事件分发Test" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:background="#fff"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/wave_full_item"
+                style="@style/main_tv_style"
+                android:text="水波纹完整版" />
 
+            <TextView
+                android:id="@+id/hk_item"
+                style="@style/main_tv_style"
+                android:text="仿HK" />
 
-                    <Button
-                        android:id="@+id/property_animation_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="测试 属性动画" />
+            <TextView
+                android:id="@+id/loading_item"
+                style="@style/main_tv_style"
+                android:text="加载动画" />
 
-                    <Button
-                        android:id="@+id/scrollby_test_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="测试 ScrollBy" />
+            <TextView
+                android:id="@+id/btn_menu_item"
+                style="@style/main_tv_style"
+                android:text="散花菜单" />
 
-                    <Button
-                        android:id="@+id/touch_event_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="测试 拦截触摸事件" />
+            <TextView
+                android:id="@+id/btn_dy_loding_item"
+                style="@style/main_tv_style"
+                android:text="抖音加载" />
 
-                    <Button
-                        android:id="@+id/dispatch_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="案例 事件分发" />
-                  <Button
-                        android:id="@+id/wave_full_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="案例 水波纹完整版" />
-                <Button
-                        android:id="@+id/hk_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="案例 HK" />
-                    <Button
-                        android:id="@+id/loading_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="加载动画" />
-
-                    <Button
-                        android:id="@+id/btn_menu_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="散花菜单" />
-
-                    <Button
-                        android:id="@+id/btn_dy_loding_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="50dp"
-                        android:text="抖音加载" />
-
-                </LinearLayout>
-
-            </ScrollView>
-        </LinearLayout>
-    </LinearLayout>
+        </com.example.customview.FlowLayout>
+    </ScrollView>
 
 
 </LinearLayout>

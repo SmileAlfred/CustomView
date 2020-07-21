@@ -24,7 +24,7 @@ import java.text.BreakIterator;
 /**
  * @author LiuSaiSai
  * @date :2020/07/20 10:12
- * @description:实现支付动画；注意：当涉及到 float 类型的逐渐递增，最好不要使用 float f == int i 这种比价的操作；
+ * @description:实现支付动画；注意：当涉及到 float 类型的逐渐递增，最好不要使用 float f == int i 这种比较的操作；
  * 因为基本上，f = 0.99450225 和 1.0094247 时，是无法进入的。
  */
 public class PayView extends View {
@@ -72,7 +72,7 @@ public class PayView extends View {
         valueAnimator.start();
     }
 
-    //这里默认他以
+    //这里默认他已经绘制完圆形
     private boolean isCircleDrawed = true;
 
     @Override

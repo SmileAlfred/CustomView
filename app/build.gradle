@@ -6,8 +6,9 @@ android {
     defaultConfig {
         applicationId "com.example.customview"
         minSdkVersion 15
-        vectorDrawables.useSupportLibrary = true//添加对Vector 兼容性的支持。
+        //添加对Vector 兼容性的支持。
         targetSdkVersion 29
+        vectorDrawables.useSupportLibrary = true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

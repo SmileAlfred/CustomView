@@ -46,7 +46,7 @@ public class GetSegmentView extends View {
         super(context, attrs);
         //禁用硬件加速
         setLayerType(LAYER_TYPE_SOFTWARE, null);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.down_arrow_popup_item);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -83,7 +83,7 @@ public class GetSegmentView extends View {
 
         //用 getPosTan() 获取图像旋转角度，画出加载动画的“箭头”
         mPathMeasure.getPosTan(mStop, pos, tan);
-        float degree = (float) (Math.atan2(tan[1], tan[0]) * 180 / Math.PI) + 90.0f;
+        float degree = (float) (Math.atan2(tan[1], tan[0]) * 180 / Math.PI) - 90.0f;
         Matrix matrix = new Matrix();
         matrix.postRotate(degree, mBitmap.getWidth() / 2, mBitmap.getHeight() / 2);
         matrix.postTranslate(pos[0] - mBitmap.getWidth() / 2, pos[1] - mBitmap.getHeight() / 2);

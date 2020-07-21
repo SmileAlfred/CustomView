@@ -60,10 +60,13 @@ public class LoadingActvity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_loading);
 
         findViews();
+
         //加载中动画，图片上下位移并更换，文字更新；
         loadingTv();
+
         //从 A - Z 变化
         updateChar();
+
         //关键帧测试，电话震动动画
         keyFrameTest();
 
@@ -79,7 +82,7 @@ public class LoadingActvity extends AppCompatActivity implements View.OnClickLis
         iv_search_anim.requestFocusFromTouch();
 
         //当 EditText 获得焦点时开始动画
-        et_search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        et_search.setOnFocusChangeListener( new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {

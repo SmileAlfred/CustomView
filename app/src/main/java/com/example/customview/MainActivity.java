@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
@@ -39,30 +39,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         findViews();
-
     }
 
     private void findViews() {
         setContentView(R.layout.activity_main);
 
-        Button youkuMenu = findViewById(R.id.youku_menu);
-        Button viewpagerItem = findViewById(R.id.viewpager_item);
-        Button popupWindowsItem = findViewById(R.id.popup_windows_item);
-        Button toggleButtonItem = findViewById(R.id.toggle_button_item);
-        Button autoAttributeItem = findViewById(R.id.auto_attribute_item);
-        Button myViewPagerItem = findViewById(R.id.my_view_pager_item);
-        Button quickIndexItem = findViewById(R.id.quick_index_item);
-        Button slideMenuItem = findViewById(R.id.slide_menu_item);
-        Button waveItem = findViewById(R.id.wave_item);
-        Button propertyAnimationItem = findViewById(R.id.property_animation_item);
-        Button scrollByTestItem = findViewById(R.id.scrollby_test_item);
-        Button TouchEventItem = findViewById(R.id.touch_event_item);
-        Button DispatchItem = findViewById(R.id.dispatch_item);
-        Button WaveFullItem = findViewById(R.id.wave_full_item);
-        Button HKItem = findViewById(R.id.hk_item);
-        Button LoadingItem = findViewById(R.id.loading_item);
-        Button btn_menu_item = findViewById(R.id.btn_menu_item);
-        Button btn_dy_loding_item = findViewById(R.id.btn_dy_loding_item);
+        TextView youkuMenu = findViewById(R.id.youku_menu);
+        TextView viewpagerItem = findViewById(R.id.viewpager_item);
+        TextView popupWindowsItem = findViewById(R.id.popup_windows_item);
+        TextView toggleButtonItem = findViewById(R.id.toggle_button_item);
+        TextView autoAttributeItem = findViewById(R.id.auto_attribute_item);
+        TextView myViewPagerItem = findViewById(R.id.my_view_pager_item);
+        TextView quickIndexItem = findViewById(R.id.quick_index_item);
+        TextView slideMenuItem = findViewById(R.id.slide_menu_item);
+        TextView waveItem = findViewById(R.id.wave_item);
+        TextView propertyAnimationItem = findViewById(R.id.property_animation_item);
+        TextView scrollByTestItem = findViewById(R.id.scrollby_test_item);
+        TextView touchEventItem = findViewById(R.id.touch_event_item);
+        TextView dispatchItem = findViewById(R.id.dispatch_item);
+        TextView waveFullItem = findViewById(R.id.wave_full_item);
+        TextView hKItem = findViewById(R.id.hk_item);
+        TextView loadingItem = findViewById(R.id.loading_item);
+        TextView btn_menu_item = findViewById(R.id.btn_menu_item);
+        TextView btnDyLodingItem = findViewById(R.id.btn_dy_loding_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -75,13 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         waveItem.setOnClickListener(this);
         propertyAnimationItem.setOnClickListener(this);
         scrollByTestItem.setOnClickListener(this);
-        TouchEventItem.setOnClickListener(this);
-        DispatchItem.setOnClickListener(this);
-        WaveFullItem.setOnClickListener(this);
-        HKItem.setOnClickListener(this);
-        LoadingItem.setOnClickListener(this);
+        touchEventItem.setOnClickListener(this);
+        dispatchItem.setOnClickListener(this);
+        waveFullItem.setOnClickListener(this);
+        hKItem.setOnClickListener(this);
+        loadingItem.setOnClickListener(this);
         btn_menu_item.setOnClickListener(this);
-        btn_dy_loding_item.setOnClickListener(this);
+        btnDyLodingItem.setOnClickListener(this);
     }
 
     @Override
