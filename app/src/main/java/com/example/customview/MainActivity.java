@@ -12,6 +12,7 @@ import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
 import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.dy_loading.DYLoadingActivity;
+import com.example.customview.gesture_track.GestureTrackActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.LoadingActvity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
@@ -22,6 +23,7 @@ import com.example.customview.scrollbyandscrollto.TestScrollByAndScrollTo;
 import com.example.customview.slide.SlideMenuItem;
 import com.example.customview.touch_eventtest.TouchEventActivity;
 import com.example.customview.wave.WaveItem;
+import com.example.customview.wave_anim.WaveAnimActivity;
 import com.example.customview.wave_full.WaveFullItem;
 import com.example.customview.youku.menu.MenuActivity;
 import com.example.customview.youku.menu.YoukuMenu;
@@ -60,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView waveFullItem = findViewById(R.id.wave_full_item);
         TextView hKItem = findViewById(R.id.hk_item);
         TextView loadingItem = findViewById(R.id.loading_item);
-        TextView btn_menu_item = findViewById(R.id.btn_menu_item);
-        TextView btnDyLodingItem = findViewById(R.id.btn_dy_loding_item);
+        TextView btn_menu_item = findViewById(R.id.tv_menu_item);
+        TextView btnDyLoadingItem = findViewById(R.id.tv_dy_loading_item);
+        TextView tv_gesture_track_item = findViewById(R.id.tv_gesture_track_item);
+        TextView tv_wave_anim_item = findViewById(R.id.tv_wave_anim_item);
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -80,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hKItem.setOnClickListener(this);
         loadingItem.setOnClickListener(this);
         btn_menu_item.setOnClickListener(this);
-        btnDyLodingItem.setOnClickListener(this);
+        btnDyLoadingItem.setOnClickListener(this);
+        tv_gesture_track_item.setOnClickListener(this);
+        tv_wave_anim_item.setOnClickListener(this);
     }
 
     @Override
@@ -135,11 +141,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            case R.id.loading_item:
                intent= new Intent(this, LoadingActvity.class);
                 break;
-           case R.id.btn_menu_item:
+           case R.id.tv_menu_item:
                intent= new Intent(this, MenuActivity.class);
                 break;
-           case R.id.btn_dy_loding_item:
+           case R.id.tv_dy_loading_item:
                intent= new Intent(this, DYLoadingActivity.class);
+                break;
+           case R.id.tv_gesture_track_item:
+               intent= new Intent(this, GestureTrackActivity.class);
+                break;
+           case R.id.tv_wave_anim_item:
+               intent= new Intent(this, WaveAnimActivity.class);
                 break;
             default:
                 break;

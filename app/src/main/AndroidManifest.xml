@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.customview">
-    <!--动作管理覆盖权限-->
+    <!-- 动作管理覆盖权限 -->
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
-
 
     <application
         android:allowBackup="true"
@@ -12,7 +11,8 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".youku.menu.MenuActivity"></activity>
+        <activity android:name=".gesture_track.GestureTrackActivity"/>
+        <activity android:name=".youku.menu.MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +37,7 @@
         <activity android:name=".hktech.HK" />
         <activity android:name=".loading.LoadingActvity" />
         <activity android:name=".dy_loading.DYLoadingActivity" />
+        <activity android:name=".wave_anim.WaveAnimActivity" />
     </application>
 
 </manifest>

@@ -102,14 +102,23 @@
                 android:text="加载动画" />
 
             <TextView
-                android:id="@+id/btn_menu_item"
+                android:id="@+id/tv_menu_item"
                 style="@style/main_tv_style"
                 android:text="散花菜单" />
 
             <TextView
-                android:id="@+id/btn_dy_loding_item"
+                android:id="@+id/tv_dy_loading_item"
                 style="@style/main_tv_style"
                 android:text="抖音加载" />
+
+            <TextView
+                android:id="@+id/tv_gesture_track_item"
+                style="@style/main_tv_style"
+                android:text="手写板" />
+            <TextView
+                android:id="@+id/tv_wave_anim_item"
+                style="@style/main_tv_style"
+                android:text="波浪动画" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>
