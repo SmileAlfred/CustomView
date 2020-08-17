@@ -46,6 +46,8 @@ public class NormalGestureTrackView extends View {
                 mPreX = event.getX();
                 mPreY = event.getY();
                 mPath.moveTo(mPreX, mPreY);
+                //这里 返回true;并且没有 break; 表示当前控件已经消费了下按动作，之后的ACTION MOVE 、ACTION UP 动作也会继续传递到当前/控件中：
+
                 return true;
 
             case MotionEvent.ACTION_MOVE:

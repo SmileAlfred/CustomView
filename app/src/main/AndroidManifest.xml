@@ -3,6 +3,10 @@
     package="com.example.customview">
     <!-- 动作管理覆盖权限 -->
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+    <!-- 显示系统窗口权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 在 屏幕最顶部显示addview-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -38,6 +42,7 @@
         <activity android:name=".loading.LoadingActvity" />
         <activity android:name=".dy_loading.DYLoadingActivity" />
         <activity android:name=".wave_anim.WaveAnimActivity" />
+        <activity android:name=".float_windows.FloatWinActivity" />
     </application>
 
 </manifest>

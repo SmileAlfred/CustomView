@@ -1,6 +1,10 @@
 package com.example.customview.wave_anim;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,4 +27,5 @@ public class WaveAnimActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.title_text_view);
         tv.setText("水波纹动画");
     }
+
 }

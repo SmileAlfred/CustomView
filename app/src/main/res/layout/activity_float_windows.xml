@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_add_float_win"
+        android:textSize="18sp"
+        android:text="添加悬浮窗"
+        android:layout_margin="30dp"/>
+    <Button
+        android:id="@+id/btn_remove_float_win"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:text="移除悬浮窗"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"/>
+
+</LinearLayout>

@@ -30,6 +30,7 @@ public class GestureTrackActivity extends AppCompatActivity implements View.OnCl
 
         title_edit_button = findViewById(R.id.title_edit_button);
         title_edit_button.setOnClickListener(this);
+        
     }
 
     @Override

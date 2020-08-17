@@ -120,6 +120,15 @@
                 style="@style/main_tv_style"
                 android:text="波浪动画" />
 
+            <TextView
+                android:id="@+id/tv_mixed_mode_item"
+                style="@style/main_tv_style"
+                android:text="混合模式" />
+            <TextView
+                android:id="@+id/tv_float_windows_item"
+                style="@style/main_tv_style"
+                android:text="悬浮窗" />
+
         </com.example.customview.FlowLayout>
     </ScrollView>
 
