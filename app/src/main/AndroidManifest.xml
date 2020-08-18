@@ -15,8 +15,12 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gesture_track.GestureTrackActivity"/>
-        <activity android:name=".youku.menu.MenuActivity" />
+        <activity
+            android:name=".gesture_track.GestureTrackActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".youku.menu.MenuActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,26 +28,70 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".youku.menu.YoukuMenu" />
-        <activity android:name=".advance.AdvanceItem" />
-        <activity android:name=".popup.windows.PopupWindowsItem" />
-        <activity android:name=".attribute.AutoAttributeItem" />
-        <activity android:name=".button.MyToggleButtonItem" />
-        <activity android:name=".my.viewpager.MyViewPagerItem" />
-        <activity android:name=".quick.index.QuickIndexItem" />
-        <activity android:name=".slide.SlideMenuItem" />
-        <activity android:name=".wave.WaveItem" />
-        <activity android:name=".property.animation.PropertyAnimation" />
-        <activity android:name=".scrollbyandscrollto.TestScrollByAndScrollTo" />
-        <activity android:name=".touch_eventtest.TouchEventActivity" />
-        <activity android:name=".dispatch.DispatchActivity" />
-        <activity android:name=".wave_full.WaveFullItem" />
-        <activity android:name=".hktech.HK" />
-        <activity android:name=".loading.LoadingActvity" />
-        <activity android:name=".dy_loading.DYLoadingActivity" />
-        <activity android:name=".wave_anim.WaveAnimActivity" />
-        <activity android:name=".float_windows.FloatWinActivity" />
-        <activity android:name=".color_matrix.ColorMatrixActivity" />
+        <activity
+            android:name=".youku.menu.YoukuMenu"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".advance.AdvanceItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".popup.windows.PopupWindowsItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".attribute.AutoAttributeItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".button.MyToggleButtonItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".my.viewpager.MyViewPagerItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".quick.index.QuickIndexItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".slide.SlideMenuItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".wave.WaveItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".property.animation.PropertyAnimation"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".scrollbyandscrollto.TestScrollByAndScrollTo"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".touch_eventtest.TouchEventActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".dispatch.DispatchActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".wave_full.WaveFullItem"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".hktech.HK"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".loading.LoadingActvity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".dy_loading.DYLoadingActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".wave_anim.WaveAnimActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".float_windows.FloatWinActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".color_matrix.ColorMatrixActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".telescope.TelescopeActivity"
+            android:screenOrientation="landscape"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

@@ -23,6 +23,7 @@ import com.example.customview.property.animation.PropertyAnimation;
 import com.example.customview.quick.index.QuickIndexItem;
 import com.example.customview.scrollbyandscrollto.TestScrollByAndScrollTo;
 import com.example.customview.slide.SlideMenuItem;
+import com.example.customview.telescope.TelescopeActivity;
 import com.example.customview.touch_eventtest.TouchEventActivity;
 import com.example.customview.wave.WaveItem;
 import com.example.customview.wave_anim.WaveAnimActivity;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_wave_anim_item = findViewById(R.id.tv_wave_anim_item);
         TextView tv_float_windows_item = findViewById(R.id.tv_float_windows_item);
         TextView tv_color_matrix_item = findViewById(R.id.tv_color_matrix_item);
+        TextView tv_telescope_item = findViewById(R.id.tv_telescope_item);
 
 
         youkuMenu.setOnClickListener(this);
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_wave_anim_item.setOnClickListener(this);
         tv_float_windows_item.setOnClickListener(this);
         tv_color_matrix_item.setOnClickListener(this);
+        tv_telescope_item.setOnClickListener(this);
     }
 
     @Override
@@ -165,6 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_color_matrix_item:
                intent= new Intent(this, ColorMatrixActivity.class);
+                break;
+           case R.id.tv_telescope_item:
+               intent= new Intent(this, TelescopeActivity.class);
                 break;
             default:
                 break;
