@@ -17,17 +17,16 @@ import com.example.customview.R;
 
 /**
  * @author: LiuSaiSai
- * @date: 2020/08/17 21:14
- * @description: 彩色图片的蓝色通道输出
+ * @date: 2020/08/18 07:56
+ * @description: 色彩投射运算 - 彩图黑白化
  */
-public class BlueColorOutView extends View {
-
+public class BlackWhiteView extends View {
     private Paint mPaint = new Paint();
     private Bitmap mBitmap;
 
-    public BlueColorOutView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public BlackWhiteView(Context context, @Nullable AttributeSet attrs) {
 
+        super(context, attrs);
         mPaint.setAntiAlias(true);
         //获取位图
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
@@ -41,11 +40,11 @@ public class BlueColorOutView extends View {
     }
 
     private void drawBitmap(Canvas canvas) {
-        //生成色彩变换矩阵 R;G;B;A
+        //生成色彩变换矩阵 R;G;B;A; 由于人眼对不同色彩的识别度不一样，以下参数是 Google最终给出的颜色值
         ColorMatrix colorMatrix = new ColorMatrix(new float[]{
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 1, 0, 0,
+                0.213f, 0.715f, 0.072f, 0, 0,
+                0.213f, 0.715f, 0.072f, 0, 0,
+                0.213f, 0.715f, 0.072f, 0, 0,
                 0, 0, 0, 1, 0,
         });
 

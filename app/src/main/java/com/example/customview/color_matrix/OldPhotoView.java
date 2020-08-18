@@ -17,17 +17,16 @@ import com.example.customview.R;
 
 /**
  * @author: LiuSaiSai
- * @date: 2020/08/17 21:14
- * @description: 彩色图片的蓝色通道输出
+ * @date: 2020/08/18 07:56
+ * @description: 色彩投射运算 - 相片变旧；
  */
-public class BlueColorOutView extends View {
-
+public class OldPhotoView extends View {
     private Paint mPaint = new Paint();
     private Bitmap mBitmap;
 
-    public BlueColorOutView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public OldPhotoView(Context context, @Nullable AttributeSet attrs) {
 
+        super(context, attrs);
         mPaint.setAntiAlias(true);
         //获取位图
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
@@ -41,11 +40,11 @@ public class BlueColorOutView extends View {
     }
 
     private void drawBitmap(Canvas canvas) {
-        //生成色彩变换矩阵 R;G;B;A
+        //生成色彩变换矩阵 R;G;B;A 红变蓝
         ColorMatrix colorMatrix = new ColorMatrix(new float[]{
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 1, 0, 0,
+                1/2f, 1/2f, 1/2f, 0, 0,
+                1/3f, 1/3f, 1/3f, 0, 0,
+                1/4f, 1/4f, 1/4f, 0, 0,
                 0, 0, 0, 1, 0,
         });
 

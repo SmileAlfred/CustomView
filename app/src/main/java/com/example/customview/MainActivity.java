@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
+import com.example.customview.color_matrix.ColorMatrixActivity;
 import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.dy_loading.DYLoadingActivity;
 import com.example.customview.float_windows.FloatWinActivity;
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_gesture_track_item = findViewById(R.id.tv_gesture_track_item);
         TextView tv_wave_anim_item = findViewById(R.id.tv_wave_anim_item);
         TextView tv_float_windows_item = findViewById(R.id.tv_float_windows_item);
+        TextView tv_color_matrix_item = findViewById(R.id.tv_color_matrix_item);
+
 
         youkuMenu.setOnClickListener(this);
         viewpagerItem.setOnClickListener(this);
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_gesture_track_item.setOnClickListener(this);
         tv_wave_anim_item.setOnClickListener(this);
         tv_float_windows_item.setOnClickListener(this);
+        tv_color_matrix_item.setOnClickListener(this);
     }
 
     @Override
@@ -158,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_float_windows_item:
                intent= new Intent(this, FloatWinActivity.class);
+                break;
+           case R.id.tv_color_matrix_item:
+               intent= new Intent(this, ColorMatrixActivity.class);
                 break;
             default:
                 break;

@@ -1,5 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <com.example.customview.TitleLayout
+        android:id="@+id/title_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_color"
+        android:layout_margin="18dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="原图像"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.BlueColorOutView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩变换 - 蓝色输出"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.ColorSaturationView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩平移 - 提高蓝色饱和度"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.ColorReverseView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩平移 - 色彩反转"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.ColorLightView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩缩放 - 提高亮度"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.BlackWhiteView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩投射 - 黑白化"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.ReplaceColorView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩投射 - 交换颜色"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/ll_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <com.example.customview.color_matrix.OldPhotoView
+                    android:layout_width="180dp"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="色彩投射 - 照片变旧"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_color_saturation"
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/advance_forest" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="饱  和  度："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_saturation"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_color_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="20"
+                    android:progress="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="红色缩放："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_red"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1.0"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_red_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="20"
+                    android:progress="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="绿色缩放："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_green"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1.0"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_green_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="20"
+                    android:progress="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蓝色缩放："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_blue"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1.0"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_blue_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="20"
+                    android:progress="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="红色旋转："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_red_rot"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="180"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_red_rot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="360"
+                    android:progress="180" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="绿色旋转："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_green_rot"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="180"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_green_rot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="360"
+                    android:progress="180" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蓝色旋转："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_blue_rot"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="180"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/sb_blue_rot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:max="360"
+                    android:progress="180" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>

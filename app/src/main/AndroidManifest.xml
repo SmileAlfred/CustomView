@@ -43,6 +43,7 @@
         <activity android:name=".dy_loading.DYLoadingActivity" />
         <activity android:name=".wave_anim.WaveAnimActivity" />
         <activity android:name=".float_windows.FloatWinActivity" />
+        <activity android:name=".color_matrix.ColorMatrixActivity" />
     </application>
 
 </manifest>

@@ -17,17 +17,16 @@ import com.example.customview.R;
 
 /**
  * @author: LiuSaiSai
- * @date: 2020/08/17 21:14
- * @description: 彩色图片的蓝色通道输出
+ * @date: 2020/08/18 07:56
+ * @description: 色彩平移运算 - 色彩反转；反相即，求出每个色彩的补值来作为目标图像的对应颜色值；白对黑，绿对蓝
  */
-public class BlueColorOutView extends View {
-
+public class ColorReverseView extends View {
     private Paint mPaint = new Paint();
     private Bitmap mBitmap;
 
-    public BlueColorOutView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public ColorReverseView(Context context, @Nullable AttributeSet attrs) {
 
+        super(context, attrs);
         mPaint.setAntiAlias(true);
         //获取位图
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
@@ -43,9 +42,9 @@ public class BlueColorOutView extends View {
     private void drawBitmap(Canvas canvas) {
         //生成色彩变换矩阵 R;G;B;A
         ColorMatrix colorMatrix = new ColorMatrix(new float[]{
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 1, 0, 0,
+                -1, 0, 0, 0, 255,
+                0, -1, 0, 0, 255,
+                0, 0, -1, 0, 255,
                 0, 0, 0, 1, 0,
         });
 

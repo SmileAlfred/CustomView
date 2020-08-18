@@ -17,17 +17,16 @@ import com.example.customview.R;
 
 /**
  * @author: LiuSaiSai
- * @date: 2020/08/17 21:14
- * @description: 彩色图片的蓝色通道输出
+ * @date: 2020/08/18 07:56
+ * @description: 色彩缩放运算 - 提高 色彩亮度
  */
-public class BlueColorOutView extends View {
-
+public class ColorLightView extends View {
     private Paint mPaint = new Paint();
     private Bitmap mBitmap;
 
-    public BlueColorOutView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public ColorLightView(Context context, @Nullable AttributeSet attrs) {
 
+        super(context, attrs);
         mPaint.setAntiAlias(true);
         //获取位图
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
@@ -43,10 +42,10 @@ public class BlueColorOutView extends View {
     private void drawBitmap(Canvas canvas) {
         //生成色彩变换矩阵 R;G;B;A
         ColorMatrix colorMatrix = new ColorMatrix(new float[]{
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 1, 0, 0,
-                0, 0, 0, 1, 0,
+                1.2f, 0, 0, 0, 0,
+                0, 1.2f, 0, 0, 0,
+                0, 0, 1.2f, 0, 0,
+                0, 0, 0, 1.2f, 0,
         });
 
         mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));

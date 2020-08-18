@@ -24,16 +24,20 @@ import com.example.customview.R;
  * @author: LiuSaiSai
  * @date: 2020/08/17 07:28
  * @description: 悬浮窗，来自《启舰_自定义控件》S13，P487
+ * BUG:重启该 activity时，取消悬浮窗报错;因为，重进来以后，虽然悬浮窗还在，但是并灭有添加，直接移除就报错
  */
 public class FloatWinActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
     private static final String TAG = FloatWinActivity.class.getClass().getSimpleName();
     private Button btn_add_float_win, btn_remove_float_win;
     private ImageView mImageView;
-    private WindowManager mWindowManager;
+    private  static WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
     private static final int REQUESTCODE = 6;
-    private int iconCount = 0;
+    /**
+     * 解决 activity 不可见之后，count 被置为0，无限添加 logo 问题；
+     */
+    private static int iconCount = 0;
 
 
     @Override
@@ -84,8 +88,9 @@ public class FloatWinActivity extends AppCompatActivity implements View.OnClickL
                 }
                 mImageView = new ImageView(this);
                 mImageView.setBackgroundResource(R.drawable.icon52);
+
                 //WindowManager.LayoutParams.WRAP_CONTENT,
-                //                        WindowManager.LayoutParams.WRAP_CONTENT,
+                //WindowManager.LayoutParams.WRAP_CONTENT,
                 mLayoutParams = new WindowManager.LayoutParams(
                         150, 150, 2003,
                         WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
@@ -106,6 +111,7 @@ public class FloatWinActivity extends AppCompatActivity implements View.OnClickL
                 if (iconCount < 1) {
                     break;
                 }
+                //待办事项：重启该 activity时，取消悬浮窗报错;因为，重进来以后，虽然悬浮窗还在，但是并灭有添加，直接移除就报错；
                 mWindowManager.removeViewImmediate(mImageView);
                 iconCount--;
                 break;
