@@ -203,10 +203,11 @@
             <ImageView
                 android:id="@+id/iv_color_saturation"
                 android:layout_width="match_parent"
-                android:layout_height="178dp"
-                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:background="@drawable/advance_forest" />
+                android:layout_margin="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/advance_forest" />
 
             <LinearLayout
                 android:layout_width="match_parent"

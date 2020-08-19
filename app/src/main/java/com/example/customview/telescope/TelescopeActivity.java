@@ -33,6 +33,7 @@ public class TelescopeActivity extends AppCompatActivity {
 
     private void initView() {
         MyUtils.hideWindows(this);
+
         tv_telescope_factor = findViewById(R.id.tv_telescope_factor);
         tv_telescope_radius = findViewById(R.id.tv_telescope_radius);
 
@@ -46,7 +47,7 @@ public class TelescopeActivity extends AppCompatActivity {
                 telescope_factor = progress;
                 tv_telescope_factor.setText(String.valueOf(progress));
                 sb_telescope_factor.setProgress(progress);
-                telescope_view.setParameter(telescope_radius, telescope_factor);
+                telescope_view.setParameter(telescope_radius, telescope_factor,true);
             }
 
             @Override
@@ -66,7 +67,7 @@ public class TelescopeActivity extends AppCompatActivity {
                 telescope_radius = progress;
                 tv_telescope_radius.setText(String.valueOf(progress));
                 sb_telescope_radius.setProgress(progress);
-                telescope_view.setParameter(telescope_radius, telescope_factor);
+                telescope_view.setParameter(telescope_radius, telescope_factor,false);
             }
 
             @Override

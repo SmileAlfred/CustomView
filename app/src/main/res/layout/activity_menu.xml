@@ -3,11 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
-
 
 
         <ImageView
@@ -34,6 +38,7 @@
             android:id="@+id/iv_item5"
             style="@style/item_button_style"
             android:background="@drawable/channel2" />
+
         <ImageView
             android:id="@+id/iv_menu"
             style="@style/munu_button_style"

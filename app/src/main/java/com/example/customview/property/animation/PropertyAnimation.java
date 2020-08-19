@@ -32,6 +32,9 @@ public class PropertyAnimation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_animation);
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("动画测试");
+
         iv_animation = findViewById(R.id.iv_animation);
         iv_animation.setOnClickListener(new View.OnClickListener() {
             @Override

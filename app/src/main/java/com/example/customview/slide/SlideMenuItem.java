@@ -40,7 +40,8 @@ public class SlideMenuItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_menu_item);
-
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("侧滑效果");
         mListView = findViewById(R.id.list_view_slide_menu);
         /**
          * 设置适配器

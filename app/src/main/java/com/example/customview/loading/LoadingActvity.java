@@ -98,6 +98,9 @@ public class LoadingActvity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void findViews() {
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("加载动画");
+
         mIv_loading = findViewById(R.id.iv_loading);
         iv_loading_cust = findViewById(R.id.iv_loading_cust);
         iv_parabola = findViewById(R.id.iv_parabola);

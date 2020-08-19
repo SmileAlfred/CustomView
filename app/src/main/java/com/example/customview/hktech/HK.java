@@ -1,6 +1,7 @@
 package com.example.customview.hktech;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,9 @@ public class HK extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hk);
-    }
 
-    
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("黑客");
+    }
 }

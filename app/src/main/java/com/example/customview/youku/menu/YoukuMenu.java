@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +52,8 @@ public class YoukuMenu extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youku_menu);
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("优酷菜单");
         iconHome = findViewById(R.id.home_youku_menu);
         iconMenu = findViewById(R.id.menu_youku_menu);
         level1Small = findViewById(R.id.level1_small);

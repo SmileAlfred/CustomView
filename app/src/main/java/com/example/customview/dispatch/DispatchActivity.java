@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.customview.R;
 
@@ -27,6 +28,9 @@ public class DispatchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispatch);
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("事件分发");
 
         lv1 = findViewById(R.id.lv1);
         lv2 = findViewById(R.id.lv2);

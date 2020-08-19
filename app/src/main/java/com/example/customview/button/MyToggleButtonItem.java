@@ -1,6 +1,7 @@
 package com.example.customview.button;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,5 +18,8 @@ public class MyToggleButtonItem extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_button_item);
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("开关");
     }
 }

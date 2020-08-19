@@ -62,7 +62,7 @@ public class PopupWindowsItem extends AppCompatActivity {
 
         mMsgsTextView = findViewById(R.id.msg_text_view_pop);
         mDeleteImageView = findViewById(R.id.delete_image_view_pop);
-        titlePoput.setText("自定义 下拉框");
+        titlePoput.setText("下拉框");
 
         mDownArrowImageView.setOnClickListener(new View.OnClickListener() {
             @Override

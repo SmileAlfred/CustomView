@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.customview.R;
 
+/**
+ * 手写板；通过二阶贝塞尔曲线实现
+ */
 public class GestureTrackActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mTitleText;

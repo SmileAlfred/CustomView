@@ -27,5 +27,4 @@ public class WaveAnimActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.title_text_view);
         tv.setText("水波纹动画");
     }
-
 }

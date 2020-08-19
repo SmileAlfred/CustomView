@@ -58,6 +58,10 @@ public class ColorMatrixActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("颜色矩阵");
+
         iv_color_saturation = findViewById(R.id.iv_color_saturation);
         tv_saturation = findViewById(R.id.tv_saturation);
         tv_red = findViewById(R.id.tv_red);

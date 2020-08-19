@@ -78,6 +78,8 @@ public class AdvanceItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advance_item);
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("广告条");
         mViewPager = findViewById(R.id.view_pager);
         mTextAdvanceItem = findViewById(R.id.text_advance_item);
         mPointAdvanceItem = findViewById(R.id.point_advance_item);

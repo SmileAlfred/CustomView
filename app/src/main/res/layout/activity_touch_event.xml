@@ -3,8 +3,8 @@
 <com.example.customview.touch_eventtest.TouchEventFather xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="320dp"
     android:layout_height="480dp"
-    android:background="#468AD7"
     android:layout_gravity="center"
+    android:background="#468AD7"
     android:gravity="center"
     android:orientation="vertical">
 

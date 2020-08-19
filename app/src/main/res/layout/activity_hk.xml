@@ -1,22 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    tools:context=".hktech.HK" >
+    android:orientation="vertical"
+    tools:context=".hktech.HK">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="HK"
-        android:textColor="@android:color/white" />
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.example.customview.hktech.HkTextGroup
         android:id="@+id/hk_text"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/background_dark" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationSet;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.customview.R;
 
+/**
+ * 撒花般 菜单效果
+ */
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView iv_menu;
@@ -38,6 +42,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void findViews() {
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("撒花菜单");
+
         iv_menu = findViewById(R.id.iv_menu);
         iv_item1 = findViewById(R.id.iv_item1);
         iv_item2 = findViewById(R.id.iv_item2);

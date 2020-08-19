@@ -18,6 +18,7 @@ import com.example.customview.gesture_track.GestureTrackActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.LoadingActvity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
+import com.example.customview.photobackcolor.ReplaceBackColorActivity;
 import com.example.customview.popup.windows.PopupWindowsItem;
 import com.example.customview.property.animation.PropertyAnimation;
 import com.example.customview.quick.index.QuickIndexItem;
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void findViews() {
         setContentView(R.layout.activity_main);
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("自定义控件");
+
         TextView youkuMenu = findViewById(R.id.youku_menu);
         TextView viewpagerItem = findViewById(R.id.viewpager_item);
         TextView popupWindowsItem = findViewById(R.id.popup_windows_item);
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_float_windows_item = findViewById(R.id.tv_float_windows_item);
         TextView tv_color_matrix_item = findViewById(R.id.tv_color_matrix_item);
         TextView tv_telescope_item = findViewById(R.id.tv_telescope_item);
+        TextView tv_replace_back_color_item = findViewById(R.id.tv_replace_back_color_item);
 
 
         youkuMenu.setOnClickListener(this);
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_float_windows_item.setOnClickListener(this);
         tv_color_matrix_item.setOnClickListener(this);
         tv_telescope_item.setOnClickListener(this);
+        tv_replace_back_color_item.setOnClickListener(this);
     }
 
     @Override
@@ -171,6 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_telescope_item:
                intent= new Intent(this, TelescopeActivity.class);
+                break;
+           case R.id.tv_replace_back_color_item:
+               intent= new Intent(this, ReplaceBackColorActivity.class);
                 break;
             default:
                 break;

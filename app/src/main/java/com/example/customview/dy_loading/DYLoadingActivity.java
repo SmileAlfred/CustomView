@@ -3,6 +3,7 @@ package com.example.customview.dy_loading;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,8 @@ public class DYLoadingActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dy_loading);
-    }
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("抖音加载效果");
+    }
 }

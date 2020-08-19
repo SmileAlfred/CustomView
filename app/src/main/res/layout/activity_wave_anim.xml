@@ -12,6 +12,7 @@
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="120dp"
         android:layout_gravity="center">
 
         <com.example.customview.wave_anim.AnimWaveView

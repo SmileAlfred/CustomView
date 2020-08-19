@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,8 @@ public class MyViewPagerItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_view_pager);
 
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("仿ViewPager");
         mMyViewPager = findViewById(R.id.my_view_pager);
         mRadioGroup = findViewById(R.id.radio_group_my_view_pager);
 

@@ -115,6 +115,7 @@
                 android:id="@+id/tv_gesture_track_item"
                 style="@style/main_tv_style"
                 android:text="手写板" />
+
             <TextView
                 android:id="@+id/tv_wave_anim_item"
                 style="@style/main_tv_style"
@@ -129,10 +130,16 @@
                 android:id="@+id/tv_color_matrix_item"
                 style="@style/main_tv_style"
                 android:text="色彩变换" />
+
             <TextView
                 android:id="@+id/tv_telescope_item"
                 style="@style/main_tv_style"
                 android:text="望远镜" />
+
+            <TextView
+                android:id="@+id/tv_replace_back_color_item"
+                style="@style/main_tv_style"
+                android:text="换背景" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>

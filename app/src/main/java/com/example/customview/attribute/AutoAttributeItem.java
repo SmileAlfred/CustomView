@@ -3,6 +3,7 @@ package com.example.customview.attribute;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.customview.R;
 
@@ -19,5 +20,8 @@ public class AutoAttributeItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_attribute_item);
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("自定义属性");
     }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -44,6 +45,9 @@ public class FloatWinActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_float_windows);
+
+        TextView tvTitle = findViewById(R.id.title_text_view);
+        tvTitle.setText("悬浮窗");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //参考：https://blog.csdn.net/zxm317122667/article/details/52685492
