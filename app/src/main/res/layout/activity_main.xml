@@ -140,6 +140,10 @@
                 android:id="@+id/tv_replace_back_color_item"
                 style="@style/main_tv_style"
                 android:text="换背景" />
+            <TextView
+                android:id="@+id/tv_achartengine_test_item"
+                style="@style/main_tv_style"
+                android:text="AChartEngine画图" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>

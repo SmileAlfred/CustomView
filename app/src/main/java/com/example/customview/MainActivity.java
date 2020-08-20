@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.customview.achartengine_test_item.AChartEngineTestActivity;
 import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_color_matrix_item = findViewById(R.id.tv_color_matrix_item);
         TextView tv_telescope_item = findViewById(R.id.tv_telescope_item);
         TextView tv_replace_back_color_item = findViewById(R.id.tv_replace_back_color_item);
+        TextView tv_achartengine_test_item = findViewById(R.id.tv_achartengine_test_item);
 
 
         youkuMenu.setOnClickListener(this);
@@ -103,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_color_matrix_item.setOnClickListener(this);
         tv_telescope_item.setOnClickListener(this);
         tv_replace_back_color_item.setOnClickListener(this);
+        tv_achartengine_test_item.setOnClickListener(this);
     }
 
     @Override
@@ -180,6 +183,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_replace_back_color_item:
                intent= new Intent(this, ReplaceBackColorActivity.class);
+                break;
+           case R.id.tv_achartengine_test_item:
+               intent= new Intent(this, AChartEngineTestActivity.class);
                 break;
             default:
                 break;
