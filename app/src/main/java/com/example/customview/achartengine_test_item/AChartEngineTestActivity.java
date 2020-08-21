@@ -1,16 +1,24 @@
 package com.example.customview.achartengine_test_item;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.customview.R;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -26,20 +34,30 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
+
 /**
  * @author: LiuSaiSai
  * @date: 2020/08/20 08:15
  * @description: 使用 开源库 AChartEngine 进行画图
+ * View 的宽高其实是在 measure 时确定的；和 AppCompatActivity 的生命周期无关！
  */
 public class AChartEngineTestActivity extends AppCompatActivity {
+    private static final String TAG = AChartEngineTestActivity.class.getSimpleName();
+
     /**
-    * 坐标系的底子
-    */
+     * 画图 - 坐标系的底子
+     */
     private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
     private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
     private double[] standardConvert;
     private double interval = 0.05;
     private GraphicalView mChartView;
+    /**
+     * BottomSheetBehavior Test - 从底部划出另一个布局
+     */
+    private BottomSheetBehavior bottomSheetBehavior;
+    private ScrollView scv_bottom_sheet_behavior;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,9 +67,104 @@ public class AChartEngineTestActivity extends AppCompatActivity {
         TextView tvTitle = findViewById(R.id.title_text_view);
         tvTitle.setText("AChartEngine画轮对");
 
-        drawChart();
+        UpLoadMenu();
+
+
+        //drawChart();
     }
 
+    /**
+     * 上划 调出菜单
+     */
+    @SuppressLint("ClickableViewAccessibility")
+    private void UpLoadMenu() {
+        scv_bottom_sheet_behavior = findViewById(R.id.scv_bottom_sheet_behavior);
+        bottomSheetBehavior = BottomSheetBehavior.from(scv_bottom_sheet_behavior);
+
+        /**
+         * 如果 ScrollView 位于列表顶端那么获取事件；否则释放
+         */
+        scv_bottom_sheet_behavior.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //canScrollVertically(-1)的值表示是否能向下滚动，false表示已经滚动到顶部
+                if (!scv_bottom_sheet_behavior.canScrollVertically(-1)) {
+                    scv_bottom_sheet_behavior.requestDisallowInterceptTouchEvent(false);
+                } else {
+                    scv_bottom_sheet_behavior.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+
+
+        Display display = getWindowManager().getDefaultDisplay();
+        //设置高度        app:behavior_peekHeight="600dp"
+        int height = display.getHeight() * 2 / 3;
+        //实际高度；如果 ScrollView 的高度没有达到 2/3 时的实际高度；
+        final int[] factHeight = new int[1];
+        scv_bottom_sheet_behavior.post(new Runnable() {
+            @Override
+            public void run() {
+                factHeight[0] = scv_bottom_sheet_behavior.getHeight();
+            }
+        });
+
+        bottomSheetBehavior.setPeekHeight(height);
+
+        if (height >= factHeight[0]) {
+            CoordinatorLayout.LayoutParams coordParams = (CoordinatorLayout.LayoutParams) scv_bottom_sheet_behavior.getLayoutParams();
+            coordParams.height = height;
+            scv_bottom_sheet_behavior.setLayoutParams(coordParams);
+        }
+        //设置默认先隐藏
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+    }
+
+
+    @Override
+    public void finish() {
+        if (bottomSheetBehavior.getState() == STATE_COLLAPSED) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        } else {
+            super.finish();
+        }
+    }
+
+    /**
+     * 通过 相上滑动手势 打开底部弹窗
+     */
+    int originY = 0;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                originY = (int) event.getY();
+                if (bottomSheetBehavior.getState() == STATE_COLLAPSED) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            case MotionEvent.ACTION_MOVE:
+                int lastY = (int) event.getY();
+                if (originY - lastY > 50) {
+                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                        bottomSheetBehavior.setState(STATE_COLLAPSED);
+                    }
+                }
+                if (bottomSheetBehavior.getState() == STATE_COLLAPSED && lastY - originY > 50) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+
+                break;
+            default:
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    /**
+     * 用 achartengine 画出轮对轮廓
+     */
     private void drawChart() {
         initMRender(mRenderer);
 
