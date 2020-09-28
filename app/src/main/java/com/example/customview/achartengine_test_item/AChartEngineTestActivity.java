@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,8 +70,7 @@ public class AChartEngineTestActivity extends AppCompatActivity {
 
         UpLoadMenu();
 
-
-        //drawChart();
+        drawChart();
     }
 
     /**
@@ -81,6 +81,13 @@ public class AChartEngineTestActivity extends AppCompatActivity {
         scv_bottom_sheet_behavior = findViewById(R.id.scv_bottom_sheet_behavior);
         bottomSheetBehavior = BottomSheetBehavior.from(scv_bottom_sheet_behavior);
 
+        TextView tv_test = findViewById(R.id.tv_test);
+        tv_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AChartEngineTestActivity.this, "测试点击按钮", Toast.LENGTH_SHORT).show();
+            }
+        });
         /**
          * 如果 ScrollView 位于列表顶端那么获取事件；否则释放
          */

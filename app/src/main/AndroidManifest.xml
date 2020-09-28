@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.customview">
     <!-- 动作管理覆盖权限 -->
-    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
-    <!-- 显示系统窗口权限 -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- 在 屏幕最顶部显示addview-->
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" /> <!-- 显示系统窗口权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 在 屏幕最顶部显示addview -->
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <application
@@ -15,6 +13,7 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".opencv_demo.OpenCvTestActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,16 +89,16 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".telescope.TelescopeActivity"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTop" />
-
-        <activity android:name=".photobackcolor.ReplaceBackColorActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop"/>
-
-        <activity android:name=".achartengine_test_item.AChartEngineTestActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".photobackcolor.ReplaceBackColorActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".achartengine_test_item.AChartEngineTestActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

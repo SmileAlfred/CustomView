@@ -19,6 +19,7 @@ import com.example.customview.gesture_track.GestureTrackActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.LoadingActvity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
+import com.example.customview.opencv_demo.OpenCvTestActivity;
 import com.example.customview.photobackcolor.ReplaceBackColorActivity;
 import com.example.customview.popup.windows.PopupWindowsItem;
 import com.example.customview.property.animation.PropertyAnimation;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_telescope_item = findViewById(R.id.tv_telescope_item);
         TextView tv_replace_back_color_item = findViewById(R.id.tv_replace_back_color_item);
         TextView tv_achartengine_test_item = findViewById(R.id.tv_achartengine_test_item);
+        TextView tv_opencv_test_item = findViewById(R.id.tv_opencv_test_item);
 
 
         youkuMenu.setOnClickListener(this);
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_telescope_item.setOnClickListener(this);
         tv_replace_back_color_item.setOnClickListener(this);
         tv_achartengine_test_item.setOnClickListener(this);
+        tv_opencv_test_item.setOnClickListener(this);
     }
 
     @Override
@@ -186,6 +189,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_achartengine_test_item:
                intent= new Intent(this, AChartEngineTestActivity.class);
+                break;
+           case R.id.tv_opencv_test_item:
+               intent= new Intent(this, OpenCvTestActivity.class);
                 break;
             default:
                 break;

@@ -144,6 +144,10 @@
                 android:id="@+id/tv_achartengine_test_item"
                 style="@style/main_tv_style"
                 android:text="AChartEngine画图" />
+            <TextView
+                android:id="@+id/tv_opencv_test_item"
+                style="@style/main_tv_style"
+                android:text="OpenCV Demo" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>
