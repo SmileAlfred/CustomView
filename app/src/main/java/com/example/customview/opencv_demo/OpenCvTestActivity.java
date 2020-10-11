@@ -2,9 +2,12 @@ package com.example.customview.opencv_demo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,8 +30,9 @@ public class OpenCvTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opencv_test);
 
-       // iniLoadOpenCV();
+        // iniLoadOpenCV();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -46,6 +50,7 @@ public class OpenCvTestActivity extends AppCompatActivity {
 
         convert2GraySimple();
     }
+
     //OpenCV库加载并初始化成功后的回调函数
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override

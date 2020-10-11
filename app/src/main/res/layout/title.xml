@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff">
+    android:background="@android:color/white">
 
     <Button
         android:id="@+id/title_back_button"
@@ -11,7 +11,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp"
         android:textAllCaps="false"
-        android:textColor="#fff" />
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/title_text_view"
