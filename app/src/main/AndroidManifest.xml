@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".opencv_demo.OpenCvTestActivity"></activity>
+        <activity android:name=".mp_chart.MPChartViewActivity"></activity>
+        <activity android:name=".opencv_demo.OpenCvTestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

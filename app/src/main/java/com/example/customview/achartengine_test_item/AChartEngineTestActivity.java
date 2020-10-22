@@ -3,7 +3,7 @@ package com.example.customview.achartengine_test_item;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.DropBoxManager;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,7 +13,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -50,7 +49,7 @@ public class AChartEngineTestActivity extends AppCompatActivity {
      * 画图 - 坐标系的底子
      */
     private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
-    private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
+    private XYMultipleSeriesDataset mDataSet = new XYMultipleSeriesDataset();
     private double[] standardConvert;
     private double interval = 0.05;
     private GraphicalView mChartView;
@@ -72,6 +71,7 @@ public class AChartEngineTestActivity extends AppCompatActivity {
 
         drawChart();
     }
+
 
     /**
      * 上划 调出菜单
@@ -197,7 +197,7 @@ public class AChartEngineTestActivity extends AppCompatActivity {
         }
 
 
-        mDataset.addSeries(series);
+        mDataSet.addSeries(series);
 
         // create a new renderer for the new series
         XYSeriesRenderer renderer = new XYSeriesRenderer();
@@ -215,10 +215,9 @@ public class AChartEngineTestActivity extends AppCompatActivity {
 
         LinearLayout ll_chart = (LinearLayout) findViewById(R.id.ll_chart);
 
-        mChartView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
+        mChartView = ChartFactory.getLineChartView(this, mDataSet, mRenderer);
         ll_chart.addView(mChartView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.FILL_PARENT));
-
     }
 
     /**

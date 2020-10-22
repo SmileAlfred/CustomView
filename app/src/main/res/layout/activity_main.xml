@@ -149,6 +149,10 @@
                 android:id="@+id/tv_opencv_test_item"
                 style="@style/main_tv_style"
                 android:text="OpenCV Demo" />
+            <TextView
+                android:id="@+id/tv_mp_chart_test_item"
+                style="@style/main_tv_style"
+                android:text="MPChart绘制动态曲线" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>
