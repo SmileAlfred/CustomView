@@ -18,7 +18,7 @@ import com.example.customview.float_windows.FloatWinActivity;
 import com.example.customview.gesture_track.GestureTrackActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.LoadingActvity;
-import com.example.customview.mp_chart.MPChartViewActivity;
+import com.example.customview.mp_chart.BlueTooth2MPChartViewActivity;
 import com.example.customview.my.viewpager.MyViewPagerItem;
 import com.example.customview.opencv_demo.OpenCvTestActivity;
 import com.example.customview.photobackcolor.ReplaceBackColorActivity;
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                intent= new Intent(this, OpenCvTestActivity.class);
                 break;
            case R.id.tv_mp_chart_test_item:
-               intent= new Intent(this, MPChartViewActivity.class);
+               intent= new Intent(this, BlueTooth2MPChartViewActivity.class);
                 break;
             default:
                 break;

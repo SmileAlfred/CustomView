@@ -6,6 +6,11 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 在 屏幕最顶部显示addview -->
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/qq_icon"
@@ -13,7 +18,7 @@
         android:roundIcon="@drawable/qq_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mp_chart.MPChartViewActivity"></activity>
+        <activity android:name=".mp_chart.BlueTooth2MPChartViewActivity"></activity>
         <activity android:name=".opencv_demo.OpenCvTestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

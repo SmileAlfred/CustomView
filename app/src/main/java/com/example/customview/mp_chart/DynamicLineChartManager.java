@@ -146,7 +146,7 @@ public class DynamicLineChartManager {
      *
      * @param number
      */
-    public void addEntry(int number) {
+    public void addEntry(float number) {
 
         //最开始的时候才添加 lineDataSet（一个lineDataSet 代表一条线）
         if (lineDataSet.getEntryCount() == 0) {

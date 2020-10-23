@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mp_chart.MPChartViewActivity">
-<com.example.customview.TitleLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="20dp"/>
+    tools:context=".mp_chart.BlueTooth2MPChartViewActivity">
+
+    <com.example.customview.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="60dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -25,18 +26,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp" />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_add_entry"
-                android:onClick="addEntry"
-                android:text="随机数据" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_add_entry"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:onClick="addEntry"
+                    android:text="随机数据" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="#33AA00A0"
+                    android:text="功率:"
+                    android:padding="3dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_power"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:layout_weight="1"
+                    android:background="#33AA00A0"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_popup_item_order"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:layout_weight="1"
+                    android:background="#33AAAA00"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_send_order"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="发送命令"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/dynamic_chart2"
-                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:layout_marginBottom="20dp" />
         </LinearLayout>
     </ScrollView>
 
