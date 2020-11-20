@@ -29,6 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <Button
@@ -73,6 +74,30 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="发送命令"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_bluetooth_ip"
+                    android:hint="蓝牙物理地址 如\n14A32F63EBFA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:layout_weight="2"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_connect_bluetooth"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="连接"
                     android:textSize="18sp" />
             </LinearLayout>
 

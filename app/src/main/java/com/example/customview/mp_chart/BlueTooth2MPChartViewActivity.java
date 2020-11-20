@@ -1,5 +1,6 @@
 package com.example.customview.mp_chart;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -17,12 +18,19 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.customview.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -30,8 +38,8 @@ import com.github.mikephil.charting.charts.LineChart;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,30 +48,56 @@ import java.util.UUID;
  */
 public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements OnClickListener {
 
+    private static final String TAG = BlueTooth2MPChartViewActivity.class.getSimpleName();
+    /**
+     * View 和 表格 相关
+     */
     private DynamicLineChartManager dynamicLineChartManager1;
     private DynamicLineChartManager dynamicLineChartManager2;
+    private LineChart mChart1, mChart2;
     private List<Integer> list = new ArrayList<>(); //数据集合
     private List<String> names = new ArrayList<>(); //折线名字集合
     private List<Integer> colour = new ArrayList<>();//折线颜色集合
     private EditText edit_text_popup_item_order;
+    private AutoCompleteTextView et_bluetooth_ip;
     private TextView tv_power;
-    private Button btn_send_order;
-    private static final String TAG = BlueTooth2MPChartViewActivity.class.getSimpleName();
+
+    /**
+     * 蓝牙相关
+     */
+    private Button btn_send_order, btn_connect_bluetooth;
+    private BluetoothAdapter _bluetoothAdapter;
+    private BluetoothManager mBluetoothManager;
+    static BluetoothDevice _device = null;     //蓝牙设备
+
+    //Dell: 34-23-87-40-73-04
+    private String HC05SAddress = "14:A3:2F:63:EB:FA";
+    private BluetoothSocket _socket = null;      //蓝牙通信socket
+    private static int connectSuccessful;//判断蓝牙接口
+    private final static String MY_UUID = "00001101-0000-1000-8000-00805F9B34FB";   //SPP服务UUID号
+    private DownloadTask dTask;
+    private boolean bRun = true;
+    private InputStream is;    //输入流，用来接收蓝牙数据
+    private static byte[] buffer;
+    private static int streamSuccessful = 1;//判断输入流
+    private String date, time;
+    private boolean bThread = false;
+    private OutputStream os = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mp_chart_view);
-        TextView title = findViewById(R.id.title_text_view);
-        title.setText("绘制动态的折线图");
-        tv_power = findViewById(R.id.tv_power);
+        findViews();
+        initChart();
 
-        LineChart mChart1 = (LineChart) findViewById(R.id.dynamic_chart1);
-        LineChart mChart2 = (LineChart) findViewById(R.id.dynamic_chart2);
-        edit_text_popup_item_order = findViewById(R.id.et_popup_item_order);
-        btn_send_order = findViewById(R.id.btn_send_order);
-        btn_send_order.setOnClickListener(this);
+        initBlueTooth();
 
+        registerReceiver(mReceiver, new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED));
+        dTask = new DownloadTask();
+        dTask.execute(100);
+    }
+
+    private void initChart() {
         //折线名字
         names.add("温度");
         names.add("压强");
@@ -78,6 +112,7 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
 
         dynamicLineChartManager1.setYAxis(100, 0, 10);
         dynamicLineChartManager2.setYAxis(100, 0, 10);
+
 
         //死循环添加数据
         new Thread(new Runnable() {
@@ -102,8 +137,33 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
                 }
             }
         }).start();
+    }
 
-        initBlueTooth();
+    String[] autoStrings = new String[]{"联合国", "联合国安理会", "联合国五个常任理事国",
+            "Google", "Google Map"};
+
+    private void findViews() {
+        setContentView(R.layout.activity_mp_chart_view);
+        TextView title = findViewById(R.id.title_text_view);
+        title.setText("绘制动态的折线图");
+        tv_power = findViewById(R.id.tv_power);
+        et_bluetooth_ip = (AutoCompleteTextView) findViewById(R.id.et_bluetooth_ip);
+
+        String[] autoStrings = new String[]{"联合国", "联合国安理会", "联合国五个常任理事国",
+                "Google", "Google Map"};
+        // 第二个参数表示适配器的下拉风格
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(BlueTooth2MPChartViewActivity.this,
+                android.R.layout.simple_dropdown_item_1line, autoStrings);
+        et_bluetooth_ip.setAdapter(adapter);
+
+        btn_connect_bluetooth = findViewById(R.id.btn_connect_bluetooth);
+        btn_connect_bluetooth.setOnClickListener(this);
+
+        mChart1 = (LineChart) findViewById(R.id.dynamic_chart1);
+        mChart2 = (LineChart) findViewById(R.id.dynamic_chart2);
+        edit_text_popup_item_order = findViewById(R.id.et_popup_item_order);
+        btn_send_order = findViewById(R.id.btn_send_order);
+        btn_send_order.setOnClickListener(this);
     }
 
     //按钮点击添加数据
@@ -114,7 +174,33 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_connect_bluetooth:
+                String temp = formatAddress(et_bluetooth_ip.getText().toString());
+                if(null == temp)break;
+                HC05SAddress = temp;
+                isStop = true;
+                if (dTask != null) {
+                    dTask.mCancle();
+                }
+
+                if (_socket != null) { //关闭连接socket
+                    try {
+                        _socket.close();
+                    } catch (IOException e) {
+                    }
+                }
+
+                if (_device != null) _device = null;
+                is = null;
+                isStop = false;
+                dTask = new DownloadTask();
+                dTask.execute(100);
+                break;
             case R.id.btn_send_order:
+                if (os == null) {
+                    Toast.makeText(this, "蓝牙没连接", 1000).show();
+                    return;
+                }
                 //TODO:发送命令
                 String order = edit_text_popup_item_order.getText().toString();
                 try {
@@ -124,34 +210,17 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
                 } catch (IOException e) {
                     Log.i(TAG, "onClick: 报错：" + e.getMessage());
                 }
-                Log.i(TAG, "onClick: _socket = "  + _socket);
+                Log.i(TAG, "onClick: _socket = " + _socket);
                 break;
             default:
                 break;
         }
     }
 
-    private BluetoothAdapter _bluetoothAdapter;
-    private BluetoothManager mBluetoothManager;
-    static BluetoothDevice _device = null;     //蓝牙设备
-
-    private String HC05SAddress = "14:A3:2F:63:EB:FA";
-    BluetoothSocket _socket = null;      //蓝牙通信socket
-    static int connectSuccessful;//判断蓝牙接口
-    private final static String MY_UUID = "00001101-0000-1000-8000-00805F9B34FB";   //SPP服务UUID号
-    private DownloadTask dTask;
-    private boolean bRun = true;
-    private InputStream is;    //输入流，用来接收蓝牙数据
-    private static byte[] buffer;
-    private static int streamSuccessful = 1;//判断输入流
-    private String date, time;
-    private boolean bThread = false;
-    private OutputStream os = null;
-
-
     public void initBlueTooth() {
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         if (mBluetoothManager == null) {
+            Toast.makeText(this, "设备不支持蓝牙，别玩了", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -180,17 +249,100 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
                 }
             }
         }.start();
-
-        registerReceiver(mReceiver, new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED));
-        dTask = new DownloadTask();
-        dTask.execute(100);
     }
 
     public void connectHC05() {
+        while (!_bluetoothAdapter.isEnabled()) {
+        }
+
         if (_bluetoothAdapter.isDiscovering()) _bluetoothAdapter.cancelDiscovery();
+        //打包log.i(TAG, "connectHC05: 搜索？" + (_bluetoothAdapter.isDiscovering()));
         if (_device == null) {
             _device = _bluetoothAdapter.getRemoteDevice(HC05SAddress);
         }
+        try {
+            if (_socket == null)
+                _socket = _device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(MY_UUID));
+            //_socket = (BluetoothSocket) _device.getClass().getDeclaredMethod("createRfcommSocket", new Class[]{int.class}).invoke(_device, 1);
+        } catch (Exception e) {
+            connectSuccessful = 2;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+            }
+            //打包log.i(TAG, "connectHC05: connectSuccessful = " + connectSuccessful + e.getMessage());
+        }
+
+        try {
+            _socket.connect();
+            connectSuccessful = 1;
+            Log.i(TAG, "1 连接成功");
+        } catch (IOException connectException) {
+            connectSuccessful = 3;
+            try {
+                Method m = _device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
+                _socket = (BluetoothSocket) m.invoke(_device, 1);
+                _socket.connect();
+                connectSuccessful = 1;
+                Log.i(TAG, "2 连接成功");
+            } catch (Exception e) {
+                connectSuccessful = 4;
+                try {
+                    _socket.close();
+                    _socket = null;
+                } catch (IOException ie) {
+                }
+            }
+            return;
+        }
+
+        //TODO：源代码
+        /*//if (Thread.State.NEW == connectThread.getState()) connectThread.start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    _socket = (BluetoothSocket) _device.getClass().getMethod("createRfcommSocket", new Class[]{int.class}).invoke(_device, 1);
+                    //打包log.i(TAG, "run: _socket = " + _socket);
+                    _socket.connect();
+                    connectSuccessful = 1;
+                    //打包log.i(TAG, "connectHC05: connectSuccessful = " + connectSuccessful);
+                } catch (Exception e) {
+                    writePadLog("connectHC05() --> _device.getClass()... 报错：\t" + e.getMessage() );
+                    try {
+                        connectSuccessful = 3;
+                        //打包log.i(TAG, "connectHC05: connectSuccessful = " + connectSuccessful + e.getMessage());
+                        if (_socket != null) {
+                            _socket.close();
+                            _socket = null;
+                        }
+                    } catch (IOException ee) {
+                        connectSuccessful = 4;
+                        writePadLog("connectHC05() --> _socket.close() 报错：\t" + ee.getMessage());
+                        //打包log.i(TAG, "connectHC05: connectSuccessful = " + connectSuccessful + ee.getMessage());
+                    }
+                    try {
+                        Looper.prepare();
+                        Toast.makeText(InsertInformation.this, getResources().getString(R.string.connectFailHint), Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+                    }
+                }
+            }
+        }).start();*/
+
+
+        try {
+            if (connectSuccessful != 1) Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    /*public void connectHC05() {
+        if (_bluetoothAdapter.isDiscovering()) _bluetoothAdapter.cancelDiscovery();
+        if (_device == null) _device = _bluetoothAdapter.getRemoteDevice(HC05SAddress);
+
         try {
             if (_socket == null)
                 _socket = _device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(MY_UUID));
@@ -199,34 +351,40 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
             Log.i(TAG, "connectHC05: _device.create 报错" + e.getMessage());
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        try {
+            _socket.connect();
+            connectSuccessful = 1;
+            Looper.prepare();
+            Toast.makeText(this, "蓝牙连接成功，可以通信", Toast.LENGTH_SHORT).show();
+            Looper.loop();
+            Log.i(TAG, "connectHC05: 第一次连接成功");
+        } catch (IOException connectException) {
+            connectSuccessful = 3;
+            try {
+                Method m = _device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
+                _socket = (BluetoothSocket) m.invoke(_device, 1);
+                _socket.connect();
+                connectSuccessful = 1;
+                Log.i(TAG, "connectHC05: 第二次连接成功");
+            } catch (Exception e) {
+                Log.i(TAG, "connectHC05: 第二次连接报错："+e.getMessage());
+                connectSuccessful = 4;
                 try {
-                    //_socket = (BluetoothSocket) _device.getClass().getMethod("createRfcommSocket", new Class[]{int.class}).invoke(_device, 1);
-                    _socket.connect();
-                    connectSuccessful = 1;
-                    Log.i(TAG, "run: connect 结束");
-                } catch (Exception e) {
-                    try {
-                        connectSuccessful = 3;
-                        if (_socket != null) {
-                            _socket.close();
-                            _socket = null;
-                        }
-                    } catch (IOException ee) {
-                        connectSuccessful = 4;
-                        Log.i(TAG, "run: _socket.close()报错" + e.getMessage());
-                    }
+                    _socket.close();
+                    _socket = null;
+                } catch (IOException ie) {
+                    Log.i(TAG, "connectHC05: 第二次关闭 socket 报错:" + ie.getMessage());
                 }
             }
-        }).start();
+            return;
+        }
+
         try {
             if (connectSuccessful != 1) Thread.sleep(2000);
         } catch (InterruptedException e) {
             Log.i(TAG, "connectHC05: 睡过了" + e.getMessage());
         }
-    }
+    }*/
 
     private boolean isStop = false;
 
@@ -337,7 +495,10 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
                             dynamicLineChartManager1.addEntry(f);
                         }
                         if (receivedMsg.contains("POWER")) {
-                            tv_power.setText(receivedMsg.replaceAll("POWER:", ""));
+                            Message msg = new Message();
+                            msg.what = POWER;
+                            msg.obj = receivedMsg.replaceAll("POWER:", "");
+                            handler.sendMessage(msg);
                         }
                     }
                 } catch (IOException e) {
@@ -346,6 +507,20 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
             }
         }
     };
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case POWER:
+                    tv_power.setText(msg.obj.toString());
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private static final int POWER = 4;
 
     private BlueToothReceiver mReceiver = new BlueToothReceiver() {
         @Override
@@ -362,4 +537,17 @@ public class BlueTooth2MPChartViewActivity extends AppCompatActivity implements 
             dTask.execute(100);
         }
     };
+
+    public String formatAddress(String newAddress) {
+        if (TextUtils.isEmpty(newAddress)) return null;
+        String result = "";
+        for (int i = 0; i < newAddress.length(); i++) {
+            result += newAddress.charAt(i);
+            if (i % 2 != 0 && i < newAddress.length() - 1) {//偶！数！位！最后一个位置不补 :
+                result += ":";
+            }
+        }
+        Log.i(TAG, "格式化后的地址格式：" + result);
+        return result;
+    }
 }
