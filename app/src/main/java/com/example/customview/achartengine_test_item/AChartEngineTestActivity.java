@@ -1,13 +1,19 @@
 package com.example.customview.achartengine_test_item;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.DropBoxManager;
+import android.os.Environment;
+import android.os.Message;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 
 import com.example.customview.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -29,10 +36,13 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.SortedMap;
 
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
 
@@ -58,20 +68,100 @@ public class AChartEngineTestActivity extends AppCompatActivity {
      */
     private BottomSheetBehavior bottomSheetBehavior;
     private ScrollView scv_bottom_sheet_behavior;
+    private XYSeries series;
+    private LinearLayout ll_chart;
+    private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achartengine_test);
+        ActivityCompat.requestPermissions(this, permissions, 100);
 
         TextView tvTitle = findViewById(R.id.title_text_view);
         tvTitle.setText("AChartEngine画轮对");
-
+        Button editBtn = findViewById(R.id.title_edit_button);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //drawMeasureImage("2020-11-28", "15:49:53");
+                draw5Single();
+            }
+        });
+        ll_chart = (LinearLayout) findViewById(R.id.ll_chart);
         UpLoadMenu();
 
+        series = new XYSeries("轮对轮廓");
         drawChart();
     }
 
+
+    private void draw5Single() {
+        series.clear();
+        series.add(3, 3);
+        series.add(6, 3);
+        series.add(4, 2);
+        series.add(4.5, 5);
+        series.add(5, 2);
+        series.add(3, 3);
+        mChartView.repaint();
+    }
+
+    private void drawMeasureImage(String date, String time) {
+        String name = date + "_" + time + ".txt";
+        File sdCardDir = Environment.getExternalStorageDirectory();
+        File buildDir = new File(sdCardDir, "/RailMeasurement/ForPC/" + 50 + "/" + date);
+        if (!buildDir.exists()) buildDir.mkdirs();
+        String savePath = (buildDir.getPath() + "/" + name).replaceAll("/root/", "").replaceAll(":", "");
+        Log.i(TAG, "drawMeasureImage: savePath = " + savePath);
+        File saveFile = new File(savePath);
+        try {
+            BufferedReader reader = null;
+            String tempString = null;
+            int line = 1;
+            StringBuffer sb = new StringBuffer();
+            reader = new BufferedReader(new FileReader(saveFile));
+            while ((tempString = reader.readLine()) != null) {
+                sb.append(tempString + "\r\n");
+                line++;
+            }
+            reader.close();
+
+            final String[] measurePointPairsStr = sb.toString().split("\n");//[(X,Y),(X,Y)]
+            final double[] tempData = new double[(measurePointPairsStr.length - 14) * 2];
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int points = 0;
+                    series.clear();
+                    mChartView.repaint();
+                    if (ll_chart.getVisibility() != View.VISIBLE)
+                        ll_chart.setVisibility(View.VISIBLE);
+                    try {
+                        for (int k = 14; k < measurePointPairsStr.length; k++) {
+                            String[] measurePointsStr = measurePointPairsStr[k].split("\t");
+                            tempData[2 * k - 28] = Double.parseDouble(measurePointsStr[0]);
+                            tempData[2 * k - 27] = Double.parseDouble(measurePointsStr[1]);
+
+                            series.add(tempData[2 * k - 28], tempData[2 * k - 27]);
+                            Log.i(TAG, "run:  X = \t" + tempData[2 * k - 28] + " ; y = \t" + tempData[2 * k - 27]);
+                            if (tempData[2 * k - 28] > 68) {
+                                mChartView.repaint();
+                                Thread.sleep(200);
+                            }
+                        }
+                        mChartView.repaint();
+                    } catch (Exception e) {
+                        Log.i(TAG, "run: " + e.getMessage());
+                    }
+                }
+            });
+        } catch (IOException e) {
+            Log.i(TAG, "drawMeasureImage: " + e.getMessage());
+            return;
+        }
+    }
 
     /**
      * 上划 调出菜单
@@ -190,11 +280,17 @@ public class AChartEngineTestActivity extends AppCompatActivity {
             }
         }
 
-        XYSeries series = new XYSeries("轮对轮廓");
         for (int k = standard.length - 1; k >= 0; k--) {
             // 填x,y值
-            series.add(interval * (standard.length - k), -standardConvert[k] + 30);
+            //TODO: series.add(interval * (standard.length - k), -standardConvert[k] + 30);
         }
+
+        series.add(3, 3);
+        series.add(6, 3);
+        series.add(4, 2);
+        series.add(4.5, 5);
+        series.add(5, 2);
+        series.add(3, 3);
 
 
         mDataSet.addSeries(series);
@@ -211,9 +307,6 @@ public class AChartEngineTestActivity extends AppCompatActivity {
         renderer.setDisplayChartValues(false);
         renderer.setDisplayChartValuesDistance(30);
         renderer.setColor(Color.RED);
-
-
-        LinearLayout ll_chart = (LinearLayout) findViewById(R.id.ll_chart);
 
         mChartView = ChartFactory.getLineChartView(this, mDataSet, mRenderer);
         ll_chart.addView(mChartView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,

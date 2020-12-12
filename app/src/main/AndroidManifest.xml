@@ -7,9 +7,12 @@
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -105,6 +108,15 @@
             android:name=".achartengine_test_item.AChartEngineTestActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".countdown.CountdownActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".getmyphonenumber.GetNumberActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".catchcrazycat.CatchCrazyCatActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

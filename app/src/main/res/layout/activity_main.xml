@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -141,18 +140,35 @@
                 android:id="@+id/tv_replace_back_color_item"
                 style="@style/main_tv_style"
                 android:text="换背景" />
+
             <TextView
                 android:id="@+id/tv_achartengine_test_item"
                 style="@style/main_tv_style"
                 android:text="AChartEngine画图" />
+
             <TextView
                 android:id="@+id/tv_opencv_test_item"
                 style="@style/main_tv_style"
                 android:text="OpenCV Demo" />
+
             <TextView
                 android:id="@+id/tv_mp_chart_test_item"
                 style="@style/main_tv_style"
                 android:text="MPChart绘制动态曲线" />
+
+            <TextView
+                android:id="@+id/tv_countdown_item"
+                style="@style/main_tv_style"
+                android:text="倒计时" />
+
+            <TextView
+                android:id="@+id/tv_getphonenumber_item"
+                style="@style/main_tv_style"
+                android:text="获取电话号码" />
+            <TextView
+                android:id="@+id/tv_catchcrazycat_item"
+                style="@style/main_tv_style"
+                android:text="抓住那只猫" />
 
         </com.example.customview.FlowLayout>
     </ScrollView>

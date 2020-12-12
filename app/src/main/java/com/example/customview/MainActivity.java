@@ -11,11 +11,14 @@ import com.example.customview.achartengine_test_item.AChartEngineTestActivity;
 import com.example.customview.advance.AdvanceItem;
 import com.example.customview.attribute.AutoAttributeItem;
 import com.example.customview.button.MyToggleButtonItem;
+import com.example.customview.catchcrazycat.CatchCrazyCatActivity;
 import com.example.customview.color_matrix.ColorMatrixActivity;
+import com.example.customview.countdown.CountdownActivity;
 import com.example.customview.dispatch.DispatchActivity;
 import com.example.customview.dy_loading.DYLoadingActivity;
 import com.example.customview.float_windows.FloatWinActivity;
 import com.example.customview.gesture_track.GestureTrackActivity;
+import com.example.customview.getmyphonenumber.GetNumberActivity;
 import com.example.customview.hktech.HK;
 import com.example.customview.loading.LoadingActvity;
 import com.example.customview.mp_chart.BlueTooth2MPChartViewActivity;
@@ -84,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView tv_achartengine_test_item = findViewById(R.id.tv_achartengine_test_item);
         TextView tv_opencv_test_item = findViewById(R.id.tv_opencv_test_item);
         TextView tv_mp_chart_test_item = findViewById(R.id.tv_mp_chart_test_item);
+        TextView tv_countdown_item = findViewById(R.id.tv_countdown_item);
+        TextView tv_getphonenumber_item = findViewById(R.id.tv_getphonenumber_item);
+        TextView tv_catchcrazycat_item = findViewById(R.id.tv_catchcrazycat_item);
 
 
         youkuMenu.setOnClickListener(this);
@@ -113,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_achartengine_test_item.setOnClickListener(this);
         tv_opencv_test_item.setOnClickListener(this);
         tv_mp_chart_test_item.setOnClickListener(this);
+        tv_countdown_item.setOnClickListener(this);
+        tv_getphonenumber_item.setOnClickListener(this);
+        tv_catchcrazycat_item.setOnClickListener(this);
     }
 
     @Override
@@ -199,6 +208,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
            case R.id.tv_mp_chart_test_item:
                intent= new Intent(this, BlueTooth2MPChartViewActivity.class);
+                break;
+           case R.id.tv_countdown_item:
+               intent= new Intent(this, CountdownActivity.class);
+                break;
+           case R.id.tv_getphonenumber_item:
+               intent= new Intent(this, GetNumberActivity.class);
+                break;
+           case R.id.tv_catchcrazycat_item:
+               intent= new Intent(this, CatchCrazyCatActivity.class);
                 break;
             default:
                 break;
